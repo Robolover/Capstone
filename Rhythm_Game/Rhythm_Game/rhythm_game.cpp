@@ -28,26 +28,42 @@ void Rhythm_Game::update_picture()
 	ui.camera->setPixmap(QPixmap::fromImage(qimg));
 }
 
-// start_button event : 게임 시작
-void Rhythm_Game::start_button()
-{
-	ui.start_button->hide();
-	ui.exit_button->hide();
-	ui.ranking_button->hide();
-
-	//start_game();
-	image.show_image();
-	QPixmap img(image.startButtonBasic);
-	ui.startButtonBasic->setPixmap(image.startButtonBasic);
-}
-
 // exit_button evetn : 종료
 void Rhythm_Game::exit_button()
 {
 	this->close();
 }
 
+// start_button event : 게임 시작
+void Rhythm_Game::start_button()
+{
+	start_game();
+}
+
 void Rhythm_Game::start_game()
 {
-//	ui.label_2->setPixmap(Image::img);
+	ui.start_button->hide();
+	ui.exit_button->hide();
+	music.music();
 }
+
+void Rhythm_Game::change_music_image()
+{
+	ui.music_image->setStyleSheet(QStringLiteral("background-image: url(C:\\image/music_image_2.png);"));
+}
+
+void Rhythm_Game::chose_music()
+{
+	ui.music_image->hide();
+	ui.leftButtonBasic->hide();
+	ui.rightButtonBasic->hide();
+}
+
+//void Rhythm_Game::move_cursor(QMouseEvent * e)
+/*{
+	setMouseTracking(TRUE);  //# True 면, mouse button 안눌러도, mouse move event 추적함.print(self.hasMouseTracking())
+	m_pos = e->();
+}
+*/
+
+

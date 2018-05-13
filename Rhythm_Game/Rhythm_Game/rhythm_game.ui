@@ -17,7 +17,7 @@
    <widget class="QPushButton" name="start_button">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>240</x>
       <y>400</y>
       <width>75</width>
       <height>23</height>
@@ -43,7 +43,7 @@
    <widget class="QPushButton" name="exit_button">
     <property name="geometry">
      <rect>
-      <x>280</x>
+      <x>360</x>
       <y>400</y>
       <width>75</width>
       <height>23</height>
@@ -53,37 +53,68 @@
      <string>Exit</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="ranking_button">
+   <widget class="QPushButton" name="music_image">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>400</y>
-      <width>75</width>
-      <height>23</height>
+      <x>570</x>
+      <y>200</y>
+      <width>61</width>
+      <height>61</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(C:\image/music_image_1.png);</string>
     </property>
     <property name="text">
-     <string>Ranking</string>
+     <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="startButtonBasic">
+   <widget class="QPushButton" name="leftButtonBasic">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>400</y>
-      <width>275</width>
-      <height>54</height>
+      <x>570</x>
+      <y>20</y>
+      <width>60</width>
+      <height>60</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(C:\image/leftButtonBasic.png) 3 10 3 10;
+border-top: 3px transparent;
+border-bottom: 3px transparent; 
+border-right: 10px transparent;
+border-left: 10px transparent;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rightButtonBasic">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>400</y>
+      <width>61</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(C:\image/rightButtonBasic.png) 3 10 3 10;
+border-top: 3px transparent;
+border-bottom: 3px transparent; 
+border-right: 10px transparent;
+border-left: 10px transparent;</string>
     </property>
     <property name="text">
      <string/>
     </property>
    </widget>
    <zorder>camera</zorder>
-   <zorder>start_button</zorder>
    <zorder>exit_button</zorder>
-   <zorder>ranking_button</zorder>
-   <zorder>startButtonBasic</zorder>
+   <zorder>start_button</zorder>
+   <zorder>leftButtonBasic</zorder>
+   <zorder>rightButtonBasic</zorder>
+   <zorder>music_image</zorder>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -107,8 +138,8 @@
    <slot>start_button()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>174</x>
-     <y>555</y>
+     <x>240</x>
+     <y>434</y>
     </hint>
     <hint type="destinationlabel">
      <x>143</x>
@@ -123,8 +154,8 @@
    <slot>exit_button()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>290</x>
-     <y>549</y>
+     <x>360</x>
+     <y>434</y>
     </hint>
     <hint type="destinationlabel">
      <x>294</x>
@@ -132,9 +163,59 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>leftButtonBasic</sender>
+   <signal>clicked()</signal>
+   <receiver>Rhythm_GameClass</receiver>
+   <slot>change_music_image()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>608</x>
+     <y>63</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>653</x>
+     <y>61</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rightButtonBasic</sender>
+   <signal>clicked()</signal>
+   <receiver>Rhythm_GameClass</receiver>
+   <slot>change_music_image()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>614</x>
+     <y>442</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>654</x>
+     <y>431</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>music_image</sender>
+   <signal>clicked()</signal>
+   <receiver>Rhythm_GameClass</receiver>
+   <slot>chose_music()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>611</x>
+     <y>248</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>660</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>start_button()</slot>
   <slot>exit_button()</slot>
+  <slot>change_music_image()</slot>
+  <slot>chose_music()</slot>
  </slots>
 </ui>

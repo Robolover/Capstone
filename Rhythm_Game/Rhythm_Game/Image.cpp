@@ -2,27 +2,31 @@
 
 void Image::show_image()
 {
-	startButtonBasic = R"(D:\Users\image\startButtonBasic.png)";
-	startButtonEntered = R"(D:\Users\image\startButtonEntered.png)";
+	music_image_1 = R"(C:\\image\music_image_1.png)";
+	music_image_2 = R"(C:\\image\music_image_2.png)";
+	music_image_3 = R"(C:\\image\music_image_3.png)";
 
-	quitButtonBasic = R"(D:\Users\image\quitButtonBasic.png)";
-	quitButtonEntered = R"(D:\Users\image\quitButtonEntered.png)";
+	startButtonBasic = R"(C:\\image\startButtonBasic.png)";
+	startButtonEntered = R"(C:\\image\startButtonEntered.png)";
+
+	quitButtonBasic = R"(C:\\image\quitButtonBasic.png)";
+	quitButtonEntered = R"(C:\\image\quitButtonEntered.png)";
 	
-	rightButtonBasic = R"(D:\Users\image\rightButtonBasic.png)";
-	rightButtonEntered = R"(D:\Users\image\rightButtonEntered.png)";
+	rightButtonBasic = R"(C:\\image\rightButtonBasic.png)";
+	rightButtonEntered = R"(C:\\image\rightButtonEntered.png)";
 	
-	leftButtonBasic = R"(D:\Users\image\leftButtonBasic.png)";
-	leftButtonEntered = R"(D:\Users\image\leftButtonEntered.png)";
+	leftButtonBasic = R"(C:\\image\leftButtonBasic.png)";
+	leftButtonEntered = R"(C:\\image\leftButtonEntered.png)";
 	
-	backButtonBasic = R"(D:\Users\image\backButtonBasic.png)";
-	backButtonEntered = R"(D:\Users\image\backButtonEntered.png)";
+	backButtonBasic = R"(C:\\image\backButtonBasic.png)";
+	backButtonEntered = R"(C:\\image\backButtonEntered.png)";
 	
-	good = R"(D:\Users\image\good.png)";
-	great = R"(D:\Users\image\great.png)";
-	miss = R"(D:\Users\image\miss.png)";
-	perfect = R"(D:\Users\image\perfect.png)";
+	good = R"(C:\\image\good.png)";
+	great = R"(C:\\image\great.png)";
+	miss = R"(C:\\image\miss.png)";
+	perfect = R"(C:\\image\perfect.png)";
 	
-	noteBasic = R"(D:\Users\image\noteBasic.png)";
-	noteRoute = R"(D:\Users\image\noteRoute.png)";
-	noteRoutePressed = R"(D:\Users\image\noteRoutePressed.png)";
+	noteBasic = R"(C:\\image\noteBasic.png)";
+	noteRoute = R"(C:\\image\noteRoute.png)";
+	noteRoutePressed = R"(C:\\image\noteRoutePressed.png)";
 }

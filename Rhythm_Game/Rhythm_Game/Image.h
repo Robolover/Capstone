@@ -3,26 +3,36 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_rhythm_game.h"
-#include "Image.h"
 
 class Image
 {
 	public:
 		void show_image();
+
+		QString music_image_1;
+		QString music_image_2;
+		QString music_image_3;
+
 		QString startButtonBasic;
 		QString startButtonEntered;
+
 		QString quitButtonBasic;
 		QString quitButtonEntered;
+		
 		QString rightButtonBasic;
 		QString rightButtonEntered;
+		
 		QString leftButtonBasic;
 		QString leftButtonEntered;
+		
 		QString backButtonBasic;
 		QString backButtonEntered;
+		
 		QString good;
 		QString great;
 		QString miss;
 		QString perfect;
+
 		QString noteBasic;
 		QString noteRoute;
 		QString noteRoutePressed;
