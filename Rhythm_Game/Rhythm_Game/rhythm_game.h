@@ -10,6 +10,7 @@
 #include <QSize>
 #include <QPixmap>
 #include <QBitmap>
+#include <qstring.h>
 
 #include "opencv2\opencv.hpp"
 #include "opencv2\highgui.hpp"
@@ -17,24 +18,26 @@
 
 #include "ui_rhythm_game.h"
 #include "Image.h"
-#include "music.h"
+#include "track.h"
 
 class Rhythm_Game : public QMainWindow
 {
 	Q_OBJECT
 
 public:
-	Image image;
-	Music music;
-
 	Rhythm_Game(QWidget *parent = 0);
 	~Rhythm_Game();
-	void start_game();
-	void move_cursor(QMouseEvent *e);
 
+	Image *image;
+	Track *track;
+
+	void select_game();
+	void move_cursor(QMouseEvent *e);
+	void play_music();
 
 private:
 	Ui::Rhythm_GameClass ui;
+	QMediaPlayer* player;
 	QTimer * timer;
 	QPoint m_pos;
 
@@ -42,7 +45,7 @@ private slots:
 	void update_picture();
 	void start_button();
 	void exit_button();
-	void change_music_image();
+	void change_music();
 	void chose_music();
 };
 

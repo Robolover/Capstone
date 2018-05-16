@@ -1,14 +1,11 @@
-﻿Build started 2018-05-14 오전 2:11:08.
+﻿Build started 2018-05-17 오전 12:10:10.
      1>Project "D:\Users\BoGyeong\source\repos\Project\capstone\Rhythm_Game\Rhythm_Game\Rhythm_Game.vcxproj" on node 2 (Build target(s)).
      1>CustomBuild:
-         Uic'ing rhythm_game.ui...
+         Moc'ing rhythm_game.h...
        ClCompile:
-         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I"D:\opencv-3.4.1\build\install\include" /I.\GeneratedFiles /I. /ID:\Qt\5.3\msvc2013_64_opengl\include /I.\GeneratedFiles\Release /ID:\Qt\5.3\msvc2013_64_opengl\include\QtCore /ID:\Qt\5.3\msvc2013_64_opengl\include\QtGui /ID:\Qt\5.3\msvc2013_64_opengl\include\QtWidgets /ID:\Qt\5.3\msvc2013_64_opengl\include\QtMultimedia /ID:\Qt\5.3\msvc2013_64_opengl\include\QtMultimediaWidgets /nologo /W1 /WX- /O2 /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_NO_DEBUG /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_WIDGETS_LIB /D QT_MULTIMEDIA_LIB /D QT_MULTIMEDIAWIDGETS_LIB /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt GeneratedFiles\Release\moc_rhythm_game.cpp Image.cpp main.cpp music.cpp rhythm_game.cpp
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I"D:\opencv-3.4.1\build\install\include" /I.\GeneratedFiles /I. /ID:\Qt\5.3\msvc2013_64_opengl\include /I.\GeneratedFiles\Release /ID:\Qt\5.3\msvc2013_64_opengl\include\QtCore /ID:\Qt\5.3\msvc2013_64_opengl\include\QtGui /ID:\Qt\5.3\msvc2013_64_opengl\include\QtWidgets /ID:\Qt\5.3\msvc2013_64_opengl\include\QtMultimedia /ID:\Qt\5.3\msvc2013_64_opengl\include\QtMultimediaWidgets /nologo /W1 /WX- /O2 /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_NO_DEBUG /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_WIDGETS_LIB /D QT_MULTIMEDIA_LIB /D QT_MULTIMEDIAWIDGETS_LIB /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt GeneratedFiles\Release\moc_rhythm_game.cpp main.cpp rhythm_game.cpp
          moc_rhythm_game.cpp
-         Image.cpp
          main.cpp
-         music.cpp
-     1>music.cpp(6): warning C4129: 'm' : unrecognized character escape sequence
          rhythm_game.cpp
          Generating Code...
        Link:
@@ -16,11 +13,11 @@
          x64\Release\moc_rhythm_game.obj
          x64\Release\Image.obj
          x64\Release\main.obj
-         x64\Release\music.obj
+         x64\Release\track.obj
          x64\Release\rhythm_game.obj
          Rhythm_Game.vcxproj -> D:\Users\BoGyeong\source\repos\Project\capstone\Rhythm_Game\x64\Release\Rhythm_Game.exe
      1>Done Building Project "D:\Users\BoGyeong\source\repos\Project\capstone\Rhythm_Game\Rhythm_Game\Rhythm_Game.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:07.86
+Time Elapsed 00:00:07.65

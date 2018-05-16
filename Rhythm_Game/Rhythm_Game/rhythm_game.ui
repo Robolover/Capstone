@@ -17,14 +17,17 @@
    <widget class="QPushButton" name="start_button">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>30</x>
       <y>400</y>
-      <width>75</width>
-      <height>23</height>
+      <width>275</width>
+      <height>54</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(C:\image/startButtonBasic.png);</string>
+    </property>
     <property name="text">
-     <string>Start</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="camera">
@@ -43,14 +46,17 @@
    <widget class="QPushButton" name="exit_button">
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>340</x>
       <y>400</y>
-      <width>75</width>
-      <height>23</height>
+      <width>275</width>
+      <height>54</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(C:\image/quitButtonBasic.png);</string>
+    </property>
     <property name="text">
-     <string>Exit</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="music_image">
@@ -69,7 +75,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="leftButtonBasic">
+   <widget class="QPushButton" name="upButtonBasic">
     <property name="geometry">
      <rect>
       <x>570</x>
@@ -89,7 +95,7 @@ border-left: 10px transparent;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="rightButtonBasic">
+   <widget class="QPushButton" name="downButtonBasic">
     <property name="geometry">
      <rect>
       <x>570</x>
@@ -112,8 +118,8 @@ border-left: 10px transparent;</string>
    <zorder>camera</zorder>
    <zorder>exit_button</zorder>
    <zorder>start_button</zorder>
-   <zorder>leftButtonBasic</zorder>
-   <zorder>rightButtonBasic</zorder>
+   <zorder>upButtonBasic</zorder>
+   <zorder>downButtonBasic</zorder>
    <zorder>music_image</zorder>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -164,26 +170,26 @@ border-left: 10px transparent;</string>
    </hints>
   </connection>
   <connection>
-   <sender>leftButtonBasic</sender>
+   <sender>upButtonBasic</sender>
    <signal>clicked()</signal>
    <receiver>Rhythm_GameClass</receiver>
-   <slot>change_music_image()</slot>
+   <slot>change_music()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>608</x>
      <y>63</y>
     </hint>
     <hint type="destinationlabel">
-     <x>653</x>
+     <x>654</x>
      <y>61</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>rightButtonBasic</sender>
+   <sender>downButtonBasic</sender>
    <signal>clicked()</signal>
    <receiver>Rhythm_GameClass</receiver>
-   <slot>change_music_image()</slot>
+   <slot>change_music()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>614</x>
@@ -215,7 +221,7 @@ border-left: 10px transparent;</string>
  <slots>
   <slot>start_button()</slot>
   <slot>exit_button()</slot>
-  <slot>change_music_image()</slot>
+  <slot>change_music()</slot>
   <slot>chose_music()</slot>
  </slots>
 </ui>

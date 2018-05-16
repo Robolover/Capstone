@@ -53,7 +53,7 @@
     <ClCompile Include="Image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="music.cpp">
+    <ClCompile Include="track.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -75,7 +75,7 @@
     <ClInclude Include="Image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="music.h">
+    <ClInclude Include="track.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

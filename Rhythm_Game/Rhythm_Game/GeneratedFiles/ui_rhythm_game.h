@@ -31,8 +31,8 @@ public:
     QLabel *camera;
     QPushButton *exit_button;
     QPushButton *music_image;
-    QPushButton *leftButtonBasic;
-    QPushButton *rightButtonBasic;
+    QPushButton *upButtonBasic;
+    QPushButton *downButtonBasic;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -45,29 +45,31 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         start_button = new QPushButton(centralWidget);
         start_button->setObjectName(QStringLiteral("start_button"));
-        start_button->setGeometry(QRect(240, 400, 75, 23));
+        start_button->setGeometry(QRect(30, 400, 275, 54));
+        start_button->setStyleSheet(QStringLiteral("background-image: url(C:\\image/startButtonBasic.png);"));
         camera = new QLabel(centralWidget);
         camera->setObjectName(QStringLiteral("camera"));
         camera->setGeometry(QRect(10, 10, 640, 480));
         exit_button = new QPushButton(centralWidget);
         exit_button->setObjectName(QStringLiteral("exit_button"));
-        exit_button->setGeometry(QRect(360, 400, 75, 23));
+        exit_button->setGeometry(QRect(340, 400, 275, 54));
+        exit_button->setStyleSheet(QStringLiteral("background-image: url(C:\\image/quitButtonBasic.png);"));
         music_image = new QPushButton(centralWidget);
         music_image->setObjectName(QStringLiteral("music_image"));
         music_image->setGeometry(QRect(570, 200, 61, 61));
         music_image->setStyleSheet(QStringLiteral("background-image: url(C:\\image/music_image_1.png);"));
-        leftButtonBasic = new QPushButton(centralWidget);
-        leftButtonBasic->setObjectName(QStringLiteral("leftButtonBasic"));
-        leftButtonBasic->setGeometry(QRect(570, 20, 60, 60));
-        leftButtonBasic->setStyleSheet(QLatin1String("background-image: url(C:\\image/leftButtonBasic.png) 3 10 3 10;\n"
+        upButtonBasic = new QPushButton(centralWidget);
+        upButtonBasic->setObjectName(QStringLiteral("upButtonBasic"));
+        upButtonBasic->setGeometry(QRect(570, 20, 60, 60));
+        upButtonBasic->setStyleSheet(QLatin1String("background-image: url(C:\\image/leftButtonBasic.png) 3 10 3 10;\n"
 "border-top: 3px transparent;\n"
 "border-bottom: 3px transparent; \n"
 "border-right: 10px transparent;\n"
 "border-left: 10px transparent;"));
-        rightButtonBasic = new QPushButton(centralWidget);
-        rightButtonBasic->setObjectName(QStringLiteral("rightButtonBasic"));
-        rightButtonBasic->setGeometry(QRect(570, 400, 61, 61));
-        rightButtonBasic->setStyleSheet(QLatin1String("background-image: url(C:\\image/rightButtonBasic.png) 3 10 3 10;\n"
+        downButtonBasic = new QPushButton(centralWidget);
+        downButtonBasic->setObjectName(QStringLiteral("downButtonBasic"));
+        downButtonBasic->setGeometry(QRect(570, 400, 61, 61));
+        downButtonBasic->setStyleSheet(QLatin1String("background-image: url(C:\\image/rightButtonBasic.png) 3 10 3 10;\n"
 "border-top: 3px transparent;\n"
 "border-bottom: 3px transparent; \n"
 "border-right: 10px transparent;\n"
@@ -76,8 +78,8 @@ public:
         camera->raise();
         exit_button->raise();
         start_button->raise();
-        leftButtonBasic->raise();
-        rightButtonBasic->raise();
+        upButtonBasic->raise();
+        downButtonBasic->raise();
         music_image->raise();
         mainToolBar = new QToolBar(Rhythm_GameClass);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -89,8 +91,8 @@ public:
         retranslateUi(Rhythm_GameClass);
         QObject::connect(start_button, SIGNAL(clicked()), Rhythm_GameClass, SLOT(start_button()));
         QObject::connect(exit_button, SIGNAL(clicked()), Rhythm_GameClass, SLOT(exit_button()));
-        QObject::connect(leftButtonBasic, SIGNAL(clicked()), Rhythm_GameClass, SLOT(change_music_image()));
-        QObject::connect(rightButtonBasic, SIGNAL(clicked()), Rhythm_GameClass, SLOT(change_music_image()));
+        QObject::connect(upButtonBasic, SIGNAL(clicked()), Rhythm_GameClass, SLOT(change_music()));
+        QObject::connect(downButtonBasic, SIGNAL(clicked()), Rhythm_GameClass, SLOT(change_music()));
         QObject::connect(music_image, SIGNAL(clicked()), Rhythm_GameClass, SLOT(chose_music()));
 
         QMetaObject::connectSlotsByName(Rhythm_GameClass);
@@ -99,12 +101,12 @@ public:
     void retranslateUi(QMainWindow *Rhythm_GameClass)
     {
         Rhythm_GameClass->setWindowTitle(QApplication::translate("Rhythm_GameClass", "Rhythm_Game", 0));
-        start_button->setText(QApplication::translate("Rhythm_GameClass", "Start", 0));
+        start_button->setText(QString());
         camera->setText(QString());
-        exit_button->setText(QApplication::translate("Rhythm_GameClass", "Exit", 0));
+        exit_button->setText(QString());
         music_image->setText(QString());
-        leftButtonBasic->setText(QString());
-        rightButtonBasic->setText(QString());
+        upButtonBasic->setText(QString());
+        downButtonBasic->setText(QString());
     } // retranslateUi
 
 };

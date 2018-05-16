@@ -1,4 +1,5 @@
 #include "rhythm_game.h"
+#include "track.h"
 
 using namespace cv;
 VideoCapture cap(0);
@@ -7,7 +8,13 @@ VideoCapture cap(0);
 Rhythm_Game::Rhythm_Game(QWidget *parent)
 	: QMainWindow(parent)
 {
+	//track->tempPoint = track->Head;
+
 	ui.setupUi(this);
+
+	ui.music_image->hide();
+	ui.upButtonBasic->hide();
+	ui.downButtonBasic->hide();
 
 	timer = new QTimer(this);
 	connect(timer, SIGNAL(timeout()), this, SLOT(update_picture()));
@@ -37,26 +44,39 @@ void Rhythm_Game::exit_button()
 // start_button event : 게임 시작
 void Rhythm_Game::start_button()
 {
-	start_game();
+	select_game();
 }
 
-void Rhythm_Game::start_game()
+void Rhythm_Game::select_game()
 {
 	ui.start_button->hide();
 	ui.exit_button->hide();
-	music.music();
+
+	ui.music_image->show();
+	ui.upButtonBasic->show();
+	ui.downButtonBasic->show();
+
+	play_music();
 }
 
-void Rhythm_Game::change_music_image()
+void Rhythm_Game::change_music()
 {
-	ui.music_image->setStyleSheet(QStringLiteral("background-image: url(C:\\image/music_image_2.png);"));
+	track->tempPoint = track->tempPoint->next;
+}
+
+void Rhythm_Game::play_music()
+{
+	player = new QMediaPlayer;
+	player->setMedia(QUrl::fromLocalFile(track->tempPoint->data->start_music));
+	player->setVolume(50);
+	player->play();
 }
 
 void Rhythm_Game::chose_music()
 {
 	ui.music_image->hide();
-	ui.leftButtonBasic->hide();
-	ui.rightButtonBasic->hide();
+	ui.upButtonBasic->hide();
+	ui.downButtonBasic->hide();
 }
 
 //void Rhythm_Game::move_cursor(QMouseEvent * e)

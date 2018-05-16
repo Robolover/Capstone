@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_Rhythm_Game_t {
     QByteArrayData data[7];
-    char stringdata[84];
+    char stringdata[78];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -34,12 +34,11 @@ QT_MOC_LITERAL(1, 12, 14),
 QT_MOC_LITERAL(2, 27, 0),
 QT_MOC_LITERAL(3, 28, 12),
 QT_MOC_LITERAL(4, 41, 11),
-QT_MOC_LITERAL(5, 53, 18),
-QT_MOC_LITERAL(6, 72, 11)
+QT_MOC_LITERAL(5, 53, 12),
+QT_MOC_LITERAL(6, 66, 11)
     },
     "Rhythm_Game\0update_picture\0\0start_button\0"
-    "exit_button\0change_music_image\0"
-    "chose_music"
+    "exit_button\0change_music\0chose_music"
 };
 #undef QT_MOC_LITERAL
 
@@ -81,7 +80,7 @@ void Rhythm_Game::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 0: _t->update_picture(); break;
         case 1: _t->start_button(); break;
         case 2: _t->exit_button(); break;
-        case 3: _t->change_music_image(); break;
+        case 3: _t->change_music(); break;
         case 4: _t->chose_music(); break;
         default: ;
         }
