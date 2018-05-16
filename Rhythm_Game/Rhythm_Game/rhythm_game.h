@@ -3,6 +3,7 @@
 
 #define TRUE 1
 
+
 #include <QtWidgets/QMainWindow>
 #include <QTimer>
 #include <qmouseeventtransition.h>
