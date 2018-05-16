@@ -3,7 +3,6 @@
 
 #define TRUE 1
 
-
 #include <QtWidgets/QMainWindow>
 #include <QTimer>
 #include <qmouseeventtransition.h>
@@ -30,8 +29,31 @@ public:
 	~Rhythm_Game();
 
 	Image *image;
-	Track *track;
 
+	typedef struct Data//테스트에서 리스트에 보관할 데이터 형식
+	{
+		QString start_music; // 음악 선택화면에 나오는 짧은 음악
+		QString game_music;  // 게임 음악
+		QString music_name;  // 음악 제목
+		QString music_image; // 음악 앨범
+	}Data;
+
+	typedef struct Node
+	{
+		QString data;
+		struct  Node  *next;
+		struct  Node  *before;
+	}Node;
+
+	Node* Head;
+	Node* tempPoint;
+
+	Data* music1;
+	Data* music2;
+	Data* music3;
+
+	void add_music(QString start_music);//노드 생성
+	void track();
 	void select_game();
 	void move_cursor(QMouseEvent *e);
 	void play_music();
