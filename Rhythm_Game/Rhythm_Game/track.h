@@ -3,6 +3,7 @@
 
 #include <QtWidgets/QMainWindow>
 #include <QMediaPlayer>
+#include <qfile.h>
 
 #include <iostream>
 
@@ -12,11 +13,12 @@
 class Track
 {
 public:
+
 	Image image;
 
 	typedef struct Data//테스트에서 리스트에 보관할 데이터 형식
-	{
-		QString start_music; // 음악 선택화면에 나오는 짧은 음악
+	{ 
+		QUrl    start_music; // 음악 선택화면에 나오는 짧은 음악
 		QString game_music;  // 게임 음악
 		QString music_name;  // 음악 제목
 		QString music_image; // 음악 앨범
@@ -24,20 +26,24 @@ public:
 
 	typedef struct _Node
 	{
-		struct  Data *data;
-		struct _Node *next;
-		struct _Node *before;
-	} Node;
+		 Data data;
+		 struct _Node* next;
+		 struct _Node* before;
+	}Node;
 
-	Node* Head;
-	Node* tempPoint;
+	Node *Head = NULL;
+	Node *Tail = NULL;
+	Node *tempPoint;
+
+	Data music1;
+	Data music2;
+	Data music3;
+
+	QMediaPlayer* player;
 	
-	Data* music1;
-	Data* music2;
-	Data* music3;
-	
-	void add_music(Data* data);//노드 생성
-	void track();
+	void add_music(Data data);//노드 생성
+	void music_info();
+	void music_track();
 
 private:
 	Ui::Rhythm_GameClass ui;

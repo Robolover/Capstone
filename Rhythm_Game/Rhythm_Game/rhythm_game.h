@@ -4,13 +4,14 @@
 #define TRUE 1
 
 #include <QtWidgets/QMainWindow>
-#include <QTimer>
 #include <qmouseeventtransition.h>
-#include <QIcon>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QGraphicsVideoItem>
+#include <qvideowidget.h>
+#include <qmultimedia.h>
+#include <QTimer>
 #include <QSize>
-#include <QPixmap>
-#include <QBitmap>
-#include <qstring.h>
 
 #include "opencv2\opencv.hpp"
 #include "opencv2\highgui.hpp"
@@ -28,25 +29,31 @@ public:
 	Rhythm_Game(QWidget *parent = 0);
 	~Rhythm_Game();
 
-	Image *image;
-	Track *track;
+	Image image;
+	Track track;
 
-	void select_game();
 	void move_cursor(QMouseEvent *e);
-	void play_music();
+	void play_video();
+	int  stage = 1;
+	int  stage_limit = 1;
 
 private:
 	Ui::Rhythm_GameClass ui;
+	QGraphicsVideoItem *item;
+	QGraphicsScene *scene;
 	QMediaPlayer* player;
+	QVideoWidget *video1;
 	QTimer * timer;
 	QPoint m_pos;
 
 private slots:
-	void update_picture();
+	void update_camera();
 	void start_button();
 	void exit_button();
-	void change_music();
-	void chose_music();
+	void change_next_stage();
+	void change_before_stage();
+	void chose_stage();
+	void play_game();
 };
 
 #endif // RHYTHM_GAME_H

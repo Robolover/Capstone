@@ -4,21 +4,17 @@
 using namespace cv;
 VideoCapture cap(0);
 
-// 생성자에서 signal : timer slot : update_picture() 이 connect 됨. 주기는 10msec
 Rhythm_Game::Rhythm_Game(QWidget *parent)
 	: QMainWindow(parent)
 {
-	//track->tempPoint = track->Head;
-
 	ui.setupUi(this);
 
-	ui.music_image->hide();
-	ui.upButtonBasic->hide();
-	ui.downButtonBasic->hide();
-
-	timer = new QTimer(this);
-	connect(timer, SIGNAL(timeout()), this, SLOT(update_picture()));
-	timer->start(1);
+	ui.stage_1->hide();
+	ui.stage_2->hide();
+	ui.stage_3->hide();
+	ui.left_button->hide();
+	ui.right_button->hide();
+	ui.video->hide();
 }
 
 Rhythm_Game::~Rhythm_Game()
@@ -27,7 +23,7 @@ Rhythm_Game::~Rhythm_Game()
 }
 
 // webcam 에서 영상을 capture
-void Rhythm_Game::update_picture()
+void Rhythm_Game::update_camera()
 {
 	Mat img;
 	cap >> img;
@@ -44,40 +40,120 @@ void Rhythm_Game::exit_button()
 // start_button event : 게임 시작
 void Rhythm_Game::start_button()
 {
-	select_game();
-}
+	//signal : timer slot : update_picture() 이 connect 됨. 주기는 10msec
+	timer = new QTimer(this);
+	connect(timer, SIGNAL(timeout()), this, SLOT(update_camera()));
+	timer->start(1);
 
-void Rhythm_Game::select_game()
-{
 	ui.start_button->hide();
 	ui.exit_button->hide();
 
-	ui.music_image->show();
-	ui.upButtonBasic->show();
-	ui.downButtonBasic->show();
+	ui.stage_1->show();
+	ui.stage_2->show();
+	ui.stage_3->show();
+	ui.left_button->show();
+	ui.right_button->show();
 
-	play_music();
+	// signal 의 중복을 막기위해 하나는 disconnect 를 해준다
+	disconnect(ui.right_button, SIGNAL(clicked()), this, SLOT(play_game()));
 }
 
-void Rhythm_Game::change_music()
+void Rhythm_Game::chose_stage()
 {
-	track->tempPoint = track->tempPoint->next;
+	disconnect(timer, SIGNAL(timeout()), this, SLOT(update_picture()));
+	connect(ui.right_button, SIGNAL(clicked()), this, SLOT(play_game()));
+
+	play_video();
+
+	ui.stage_1->hide();
+	ui.stage_2->hide();
+	ui.stage_3->hide();
+	ui.left_button->hide();
+	ui.right_button->show();
 }
 
-void Rhythm_Game::play_music()
+void Rhythm_Game::play_video()
 {
-	player = new QMediaPlayer;
-	player->setMedia(QUrl::fromLocalFile(track->tempPoint->data->start_music));
+	player = new QMediaPlayer();
+	item = new QGraphicsVideoItem;
+	scene = new QGraphicsScene();
+	video1 = new QVideoWidget();
+
+	player->setVideoOutput(item);
+	player->setMedia(QUrl::fromLocalFile("C:/music/talmo.mp4"));
 	player->setVolume(50);
+
+	ui.video->setViewport(video1);
+	player->setVideoOutput(video1);
+	ui.video->show();
+
 	player->play();
 }
 
-void Rhythm_Game::chose_music()
+void Rhythm_Game::change_next_stage()
 {
-	ui.music_image->hide();
-	ui.upButtonBasic->hide();
-	ui.downButtonBasic->hide();
+	switch (stage){
+
+	case 1:
+		ui.stage_1->setGeometry(130, 400, 60, 60);
+		ui.stage_2->setGeometry(300, 340, 120, 120);
+		stage = 2;
+		break;
+
+	case 2:
+		ui.stage_2->setGeometry(300, 400, 60, 60);
+		ui.stage_3->setGeometry(430, 340, 120, 120);
+		stage = 3;
+		break;
+
+	case 3:
+		ui.stage_3->setGeometry(430, 400, 60, 60);
+		ui.stage_1->setGeometry(130, 340, 120, 120);
+		stage = 1;
+		break;
+
+	default:
+		stage = 1;
+		break;
+	}
 }
+
+void Rhythm_Game::change_before_stage()
+{
+	switch (stage){
+
+	case 1:
+		ui.stage_1->setGeometry(130, 400, 60, 60);
+		ui.stage_3->setGeometry(430, 340, 120, 120);
+		stage = 3;
+		break;
+
+	case 2:
+		ui.stage_2->setGeometry(300, 400, 60, 60);
+		ui.stage_1->setGeometry(130, 340, 120, 120);
+		stage = 1;
+		break;
+
+	case 3:
+		ui.stage_3->setGeometry(430, 400, 60, 60);
+		ui.stage_2->setGeometry(300, 340, 120, 120);
+		stage = 2;
+		break;
+
+	default:
+		stage = 1;
+		break;
+	}
+}
+
+void Rhythm_Game::play_game()
+{
+	player->stop();
+	ui.video->hide();
+
+	connect(timer, SIGNAL(timeout()), this, SLOT(update_picture()));
+}
+
 
 //void Rhythm_Game::move_cursor(QMouseEvent * e)
 /*{

@@ -1,4 +1,4 @@
-﻿Build started 2018-05-17 오전 12:10:10.
+﻿Build started 2018-05-22 오후 10:19:50.
      1>Project "D:\Users\BoGyeong\source\repos\Project\capstone\Rhythm_Game\Rhythm_Game\Rhythm_Game.vcxproj" on node 2 (Build target(s)).
      1>CustomBuild:
          Moc'ing rhythm_game.h...
@@ -20,4 +20,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:07.65
+Time Elapsed 00:00:07.89

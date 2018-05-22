@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
@@ -30,9 +31,12 @@ public:
     QPushButton *start_button;
     QLabel *camera;
     QPushButton *exit_button;
-    QPushButton *music_image;
-    QPushButton *upButtonBasic;
-    QPushButton *downButtonBasic;
+    QPushButton *stage_1;
+    QPushButton *left_button;
+    QPushButton *right_button;
+    QPushButton *stage_2;
+    QPushButton *stage_3;
+    QGraphicsView *video;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -40,7 +44,7 @@ public:
     {
         if (Rhythm_GameClass->objectName().isEmpty())
             Rhythm_GameClass->setObjectName(QStringLiteral("Rhythm_GameClass"));
-        Rhythm_GameClass->resize(660, 500);
+        Rhythm_GameClass->resize(664, 500);
         centralWidget = new QWidget(Rhythm_GameClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         start_button = new QPushButton(centralWidget);
@@ -54,33 +58,47 @@ public:
         exit_button->setObjectName(QStringLiteral("exit_button"));
         exit_button->setGeometry(QRect(340, 400, 275, 54));
         exit_button->setStyleSheet(QStringLiteral("background-image: url(C:\\image/quitButtonBasic.png);"));
-        music_image = new QPushButton(centralWidget);
-        music_image->setObjectName(QStringLiteral("music_image"));
-        music_image->setGeometry(QRect(570, 200, 61, 61));
-        music_image->setStyleSheet(QStringLiteral("background-image: url(C:\\image/music_image_1.png);"));
-        upButtonBasic = new QPushButton(centralWidget);
-        upButtonBasic->setObjectName(QStringLiteral("upButtonBasic"));
-        upButtonBasic->setGeometry(QRect(570, 20, 60, 60));
-        upButtonBasic->setStyleSheet(QLatin1String("background-image: url(C:\\image/leftButtonBasic.png) 3 10 3 10;\n"
+        stage_1 = new QPushButton(centralWidget);
+        stage_1->setObjectName(QStringLiteral("stage_1"));
+        stage_1->setGeometry(QRect(130, 340, 120, 120));
+        stage_1->setStyleSheet(QStringLiteral("background-image: url(C:\\image/music_image_1.png);"));
+        left_button = new QPushButton(centralWidget);
+        left_button->setObjectName(QStringLiteral("left_button"));
+        left_button->setGeometry(QRect(20, 400, 60, 60));
+        left_button->setStyleSheet(QLatin1String("background-image: url(C:\\image/leftButtonBasic.png) 3 10 3 10;\n"
 "border-top: 3px transparent;\n"
 "border-bottom: 3px transparent; \n"
 "border-right: 10px transparent;\n"
 "border-left: 10px transparent;"));
-        downButtonBasic = new QPushButton(centralWidget);
-        downButtonBasic->setObjectName(QStringLiteral("downButtonBasic"));
-        downButtonBasic->setGeometry(QRect(570, 400, 61, 61));
-        downButtonBasic->setStyleSheet(QLatin1String("background-image: url(C:\\image/rightButtonBasic.png) 3 10 3 10;\n"
+        right_button = new QPushButton(centralWidget);
+        right_button->setObjectName(QStringLiteral("right_button"));
+        right_button->setGeometry(QRect(570, 400, 60, 60));
+        right_button->setStyleSheet(QLatin1String("background-image: url(C:\\image/rightButtonBasic.png) 3 10 3 10;\n"
 "border-top: 3px transparent;\n"
 "border-bottom: 3px transparent; \n"
 "border-right: 10px transparent;\n"
 "border-left: 10px transparent;"));
+        stage_2 = new QPushButton(centralWidget);
+        stage_2->setObjectName(QStringLiteral("stage_2"));
+        stage_2->setGeometry(QRect(300, 400, 60, 60));
+        stage_2->setStyleSheet(QStringLiteral("background-image: url(C:\\image/music_image_2.png);"));
+        stage_3 = new QPushButton(centralWidget);
+        stage_3->setObjectName(QStringLiteral("stage_3"));
+        stage_3->setGeometry(QRect(430, 400, 60, 60));
+        stage_3->setStyleSheet(QStringLiteral("background-image: url(C:\\image/music_image_3.png);"));
+        video = new QGraphicsView(centralWidget);
+        video->setObjectName(QStringLiteral("video"));
+        video->setGeometry(QRect(10, 10, 640, 480));
         Rhythm_GameClass->setCentralWidget(centralWidget);
         camera->raise();
         exit_button->raise();
         start_button->raise();
-        upButtonBasic->raise();
-        downButtonBasic->raise();
-        music_image->raise();
+        video->raise();
+        right_button->raise();
+        stage_1->raise();
+        stage_2->raise();
+        stage_3->raise();
+        left_button->raise();
         mainToolBar = new QToolBar(Rhythm_GameClass);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
         Rhythm_GameClass->addToolBar(Qt::TopToolBarArea, mainToolBar);
@@ -91,9 +109,12 @@ public:
         retranslateUi(Rhythm_GameClass);
         QObject::connect(start_button, SIGNAL(clicked()), Rhythm_GameClass, SLOT(start_button()));
         QObject::connect(exit_button, SIGNAL(clicked()), Rhythm_GameClass, SLOT(exit_button()));
-        QObject::connect(upButtonBasic, SIGNAL(clicked()), Rhythm_GameClass, SLOT(change_music()));
-        QObject::connect(downButtonBasic, SIGNAL(clicked()), Rhythm_GameClass, SLOT(change_music()));
-        QObject::connect(music_image, SIGNAL(clicked()), Rhythm_GameClass, SLOT(chose_music()));
+        QObject::connect(right_button, SIGNAL(clicked()), Rhythm_GameClass, SLOT(change_next_stage()));
+        QObject::connect(stage_2, SIGNAL(clicked()), Rhythm_GameClass, SLOT(chose_stage()));
+        QObject::connect(stage_1, SIGNAL(clicked()), Rhythm_GameClass, SLOT(chose_stage()));
+        QObject::connect(right_button, SIGNAL(clicked()), Rhythm_GameClass, SLOT(play_game()));
+        QObject::connect(stage_3, SIGNAL(clicked()), Rhythm_GameClass, SLOT(chose_stage()));
+        QObject::connect(left_button, SIGNAL(clicked()), Rhythm_GameClass, SLOT(change_before_stage()));
 
         QMetaObject::connectSlotsByName(Rhythm_GameClass);
     } // setupUi
@@ -104,9 +125,11 @@ public:
         start_button->setText(QString());
         camera->setText(QString());
         exit_button->setText(QString());
-        music_image->setText(QString());
-        upButtonBasic->setText(QString());
-        downButtonBasic->setText(QString());
+        stage_1->setText(QString());
+        left_button->setText(QString());
+        right_button->setText(QString());
+        stage_2->setText(QString());
+        stage_3->setText(QString());
     } // retranslateUi
 
 };

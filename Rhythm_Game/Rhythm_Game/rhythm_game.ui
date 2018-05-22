@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>660</width>
+    <width>664</width>
     <height>500</height>
    </rect>
   </property>
@@ -59,13 +59,13 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="music_image">
+   <widget class="QPushButton" name="stage_1">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>200</y>
-      <width>61</width>
-      <height>61</height>
+      <x>130</x>
+      <y>340</y>
+      <width>120</width>
+      <height>120</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -75,11 +75,11 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="upButtonBasic">
+   <widget class="QPushButton" name="left_button">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>20</y>
+      <x>20</x>
+      <y>400</y>
       <width>60</width>
       <height>60</height>
      </rect>
@@ -95,13 +95,13 @@ border-left: 10px transparent;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="downButtonBasic">
+   <widget class="QPushButton" name="right_button">
     <property name="geometry">
      <rect>
       <x>570</x>
       <y>400</y>
-      <width>61</width>
-      <height>61</height>
+      <width>60</width>
+      <height>60</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -115,12 +115,57 @@ border-left: 10px transparent;</string>
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="stage_2">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>400</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(C:\image/music_image_2.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="stage_3">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>400</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(C:\image/music_image_3.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="video">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>640</width>
+      <height>480</height>
+     </rect>
+    </property>
+   </widget>
    <zorder>camera</zorder>
    <zorder>exit_button</zorder>
    <zorder>start_button</zorder>
-   <zorder>upButtonBasic</zorder>
-   <zorder>downButtonBasic</zorder>
-   <zorder>music_image</zorder>
+   <zorder>video</zorder>
+   <zorder>right_button</zorder>
+   <zorder>stage_1</zorder>
+   <zorder>stage_2</zorder>
+   <zorder>stage_3</zorder>
+   <zorder>left_button</zorder>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -149,7 +194,7 @@ border-left: 10px transparent;</string>
     </hint>
     <hint type="destinationlabel">
      <x>143</x>
-     <y>554</y>
+     <y>499</y>
     </hint>
    </hints>
   </connection>
@@ -165,31 +210,15 @@ border-left: 10px transparent;</string>
     </hint>
     <hint type="destinationlabel">
      <x>294</x>
-     <y>578</y>
+     <y>499</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>upButtonBasic</sender>
+   <sender>right_button</sender>
    <signal>clicked()</signal>
    <receiver>Rhythm_GameClass</receiver>
-   <slot>change_music()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>608</x>
-     <y>63</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>654</x>
-     <y>61</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>downButtonBasic</sender>
-   <signal>clicked()</signal>
-   <receiver>Rhythm_GameClass</receiver>
-   <slot>change_music()</slot>
+   <slot>change_next_stage()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>614</x>
@@ -202,18 +231,82 @@ border-left: 10px transparent;</string>
    </hints>
   </connection>
   <connection>
-   <sender>music_image</sender>
+   <sender>stage_2</sender>
    <signal>clicked()</signal>
    <receiver>Rhythm_GameClass</receiver>
-   <slot>chose_music()</slot>
+   <slot>chose_stage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>611</x>
-     <y>248</y>
+     <x>329</x>
+     <y>441</y>
     </hint>
     <hint type="destinationlabel">
-     <x>660</x>
+     <x>656</x>
      <y>249</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>stage_1</sender>
+   <signal>clicked()</signal>
+   <receiver>Rhythm_GameClass</receiver>
+   <slot>chose_stage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>215</x>
+     <y>450</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>164</x>
+     <y>499</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>right_button</sender>
+   <signal>clicked()</signal>
+   <receiver>Rhythm_GameClass</receiver>
+   <slot>play_game()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>599</x>
+     <y>441</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>329</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>stage_3</sender>
+   <signal>clicked()</signal>
+   <receiver>Rhythm_GameClass</receiver>
+   <slot>chose_stage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>459</x>
+     <y>441</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>331</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>left_button</sender>
+   <signal>clicked()</signal>
+   <receiver>Rhythm_GameClass</receiver>
+   <slot>change_before_stage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>23</x>
+     <y>458</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>87</x>
+     <y>13</y>
     </hint>
    </hints>
   </connection>
@@ -221,7 +314,9 @@ border-left: 10px transparent;</string>
  <slots>
   <slot>start_button()</slot>
   <slot>exit_button()</slot>
-  <slot>change_music()</slot>
-  <slot>chose_music()</slot>
+  <slot>change_next_stage()</slot>
+  <slot>chose_stage()</slot>
+  <slot>change_before_stage()</slot>
+  <slot>play_game()</slot>
  </slots>
 </ui>
