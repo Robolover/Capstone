@@ -53,7 +53,7 @@
     <ClCompile Include="Image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="track.cpp">
+    <ClCompile Include="stage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -75,7 +75,7 @@
     <ClInclude Include="Image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="track.h">
+    <ClInclude Include="stage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

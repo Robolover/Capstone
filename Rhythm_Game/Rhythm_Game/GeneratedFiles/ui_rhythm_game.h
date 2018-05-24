@@ -37,6 +37,7 @@ public:
     QPushButton *stage_2;
     QPushButton *stage_3;
     QGraphicsView *video;
+    QPushButton *main_button;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -44,7 +45,7 @@ public:
     {
         if (Rhythm_GameClass->objectName().isEmpty())
             Rhythm_GameClass->setObjectName(QStringLiteral("Rhythm_GameClass"));
-        Rhythm_GameClass->resize(664, 500);
+        Rhythm_GameClass->resize(670, 500);
         centralWidget = new QWidget(Rhythm_GameClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         start_button = new QPushButton(centralWidget);
@@ -89,16 +90,21 @@ public:
         video = new QGraphicsView(centralWidget);
         video->setObjectName(QStringLiteral("video"));
         video->setGeometry(QRect(10, 10, 640, 480));
+        main_button = new QPushButton(centralWidget);
+        main_button->setObjectName(QStringLiteral("main_button"));
+        main_button->setGeometry(QRect(180, 380, 341, 80));
+        main_button->setStyleSheet(QStringLiteral("background-image: url(C:\\image/great.png);"));
         Rhythm_GameClass->setCentralWidget(centralWidget);
         camera->raise();
-        exit_button->raise();
-        start_button->raise();
         video->raise();
         right_button->raise();
         stage_1->raise();
         stage_2->raise();
         stage_3->raise();
         left_button->raise();
+        main_button->raise();
+        exit_button->raise();
+        start_button->raise();
         mainToolBar = new QToolBar(Rhythm_GameClass);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
         Rhythm_GameClass->addToolBar(Qt::TopToolBarArea, mainToolBar);
@@ -115,6 +121,8 @@ public:
         QObject::connect(right_button, SIGNAL(clicked()), Rhythm_GameClass, SLOT(play_game()));
         QObject::connect(stage_3, SIGNAL(clicked()), Rhythm_GameClass, SLOT(chose_stage()));
         QObject::connect(left_button, SIGNAL(clicked()), Rhythm_GameClass, SLOT(change_before_stage()));
+        QObject::connect(main_button, SIGNAL(clicked()), Rhythm_GameClass, SLOT(return_main()));
+        QObject::connect(right_button, SIGNAL(clicked()), Rhythm_GameClass, SLOT(next_stage()));
 
         QMetaObject::connectSlotsByName(Rhythm_GameClass);
     } // setupUi
@@ -130,6 +138,7 @@ public:
         right_button->setText(QString());
         stage_2->setText(QString());
         stage_3->setText(QString());
+        main_button->setText(QString());
     } // retranslateUi
 
 };

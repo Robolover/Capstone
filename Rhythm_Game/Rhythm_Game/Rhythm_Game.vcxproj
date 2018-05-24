@@ -157,7 +157,7 @@
     </ClCompile>
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="track.cpp" />
+    <ClCompile Include="stage.cpp" />
     <ClCompile Include="rhythm_game.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -203,7 +203,7 @@
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_rhythm_game.h" />
     <ClInclude Include="Image.h" />
-    <ClInclude Include="track.h" />
+    <ClInclude Include="stage.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="rhythm_game.qrc">

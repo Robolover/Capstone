@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>664</width>
+    <width>670</width>
     <height>500</height>
    </rect>
   </property>
@@ -157,15 +157,32 @@ border-left: 10px transparent;</string>
      </rect>
     </property>
    </widget>
+   <widget class="QPushButton" name="main_button">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>380</y>
+      <width>341</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(C:\image/great.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <zorder>camera</zorder>
-   <zorder>exit_button</zorder>
-   <zorder>start_button</zorder>
    <zorder>video</zorder>
    <zorder>right_button</zorder>
    <zorder>stage_1</zorder>
    <zorder>stage_2</zorder>
    <zorder>stage_3</zorder>
    <zorder>left_button</zorder>
+   <zorder>main_button</zorder>
+   <zorder>exit_button</zorder>
+   <zorder>start_button</zorder>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -310,6 +327,38 @@ border-left: 10px transparent;</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>main_button</sender>
+   <signal>clicked()</signal>
+   <receiver>Rhythm_GameClass</receiver>
+   <slot>return_main()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>437</x>
+     <y>402</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>503</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>right_button</sender>
+   <signal>clicked()</signal>
+   <receiver>Rhythm_GameClass</receiver>
+   <slot>next_stage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>599</x>
+     <y>441</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>331</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>start_button()</slot>
@@ -318,5 +367,7 @@ border-left: 10px transparent;</string>
   <slot>chose_stage()</slot>
   <slot>change_before_stage()</slot>
   <slot>play_game()</slot>
+  <slot>return_main()</slot>
+  <slot>next_stage()</slot>
  </slots>
 </ui>
