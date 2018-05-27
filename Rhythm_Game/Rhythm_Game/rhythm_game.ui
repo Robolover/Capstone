@@ -62,7 +62,7 @@
    <widget class="QPushButton" name="stage_1">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>70</x>
       <y>340</y>
       <width>120</width>
       <height>120</height>
@@ -118,10 +118,10 @@ border-left: 10px transparent;</string>
    <widget class="QPushButton" name="stage_2">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>400</y>
-      <width>60</width>
-      <height>60</height>
+      <x>270</x>
+      <y>340</y>
+      <width>120</width>
+      <height>120</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -134,10 +134,10 @@ border-left: 10px transparent;</string>
    <widget class="QPushButton" name="stage_3">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>400</y>
-      <width>60</width>
-      <height>60</height>
+      <x>460</x>
+      <y>340</y>
+      <width>120</width>
+      <height>120</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -340,22 +340,6 @@ border-left: 10px transparent;</string>
     <hint type="destinationlabel">
      <x>503</x>
      <y>0</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>right_button</sender>
-   <signal>clicked()</signal>
-   <receiver>Rhythm_GameClass</receiver>
-   <slot>next_stage()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>599</x>
-     <y>441</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>331</x>
-     <y>249</y>
     </hint>
    </hints>
   </connection>

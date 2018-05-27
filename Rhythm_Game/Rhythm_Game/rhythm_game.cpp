@@ -7,13 +7,7 @@ Rhythm_Game::Rhythm_Game(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
-	ui.stage_1->hide();
-	ui.stage_2->hide();
-	ui.stage_3->hide();
-	ui.main_button->hide();
-	ui.left_button->hide();
-	ui.right_button->hide();
-	ui.video->hide();
+	main_ui();
 
 	timer = new QTimer(this);
 	timer->start(1);
@@ -33,6 +27,62 @@ void Rhythm_Game::update_camera()
 	ui.camera->setPixmap(QPixmap::fromImage(qimg));
 }
 
+void Rhythm_Game::main_ui()
+{
+	ui.stage_1->hide();
+	ui.stage_2->hide();
+	ui.stage_3->hide();
+	ui.main_button->hide();
+	ui.left_button->hide();
+	ui.right_button->hide();
+	ui.video->hide();
+}
+
+void Rhythm_Game::stage_ui()
+{
+	ui.start_button->hide();
+	ui.exit_button->hide();
+	ui.main_button->hide();
+
+	ui.stage_1->show();
+	ui.left_button->show();
+	ui.right_button->show();
+
+	//signal : timer slot : update_picture() 이 connect 됨. 주기는 10msec
+	connect(timer, SIGNAL(timeout()), this, SLOT(update_camera()));
+	// signal 의 중복을 막기위해 하나는 disconnect 를 해준다
+	disconnect(ui.right_button, SIGNAL(clicked()), this, SLOT(play_game()));
+	disconnect(ui.right_button, SIGNAL(clicked()), this, SLOT(next_stage()));
+}
+
+void Rhythm_Game::video_ui()
+{
+	ui.stage_1->hide();
+	ui.stage_2->hide();
+	ui.stage_3->hide();
+	ui.left_button->hide();
+	ui.right_button->show();
+
+	disconnect(timer, SIGNAL(timeout()), this, SLOT(update_camera()));
+	disconnect(ui.right_button, SIGNAL(clicked()), this, SLOT(next_stage()));
+	connect(ui.right_button, SIGNAL(clicked()), this, SLOT(play_game()));
+}
+
+void Rhythm_Game::play_ui()
+{
+	player->stop();
+	ui.video->hide();
+
+	ui.stage_1->hide();
+	ui.stage_2->hide();
+	ui.stage_3->hide();
+	ui.main_button->show();
+	ui.right_button->hide();
+
+	connect(timer, SIGNAL(timeout()), this, SLOT(update_camera()));
+	connect(ui.right_button, SIGNAL(clicked()), this, SLOT(next_stage()));
+}
+
 // exit_button evetn : 종료
 void Rhythm_Game::exit_button()
 {
@@ -42,43 +92,21 @@ void Rhythm_Game::exit_button()
 // start_button event : 게임 시작
 void Rhythm_Game::start_button()
 {
-	//signal : timer slot : update_picture() 이 connect 됨. 주기는 10msec
-	connect(timer, SIGNAL(timeout()), this, SLOT(update_camera()));
-
-	ui.start_button->hide();
-	ui.exit_button->hide();
-
-	ui.stage_1->show();
-	ui.stage_2->show();
-	ui.stage_3->show();
-	ui.left_button->show();
-	ui.right_button->show();
-
-	// signal 의 중복을 막기위해 하나는 disconnect 를 해준다
-	disconnect(ui.right_button, SIGNAL(clicked()), this, SLOT(play_game()));
-	disconnect(ui.right_button, SIGNAL(clicked()), this, SLOT(next_stage()));
+	stage_ui();
 }
 
 void Rhythm_Game::chose_stage()
 {
-	timer->stop();
-	connect(ui.right_button, SIGNAL(clicked()), this, SLOT(play_game()));
-
+	video_ui();
 	play_video();
-
-	ui.stage_1->hide();
-	ui.stage_2->hide();
-	ui.stage_3->hide();
-	ui.left_button->hide();
-	ui.right_button->show();	
 }
 
 void Rhythm_Game::play_video()
 {
 	player = new QMediaPlayer();
-	item = new QGraphicsVideoItem;
-	scene = new QGraphicsScene();
-	video = new QVideoWidget();
+	item   = new QGraphicsVideoItem;
+	scene  = new QGraphicsScene();
+	video  = new QVideoWidget();
 
 	if (stage_state == 1)
 	{
@@ -90,8 +118,7 @@ void Rhythm_Game::play_video()
 		player->setVideoOutput(video);
 		ui.video->show();
 
-		player->play();
-
+		player->play(); 
 	}
 
 	else if (stage_state == 2)
@@ -105,7 +132,6 @@ void Rhythm_Game::play_video()
 		ui.video->show();
 
 		player->play();
-
 	}
 
 
@@ -120,7 +146,6 @@ void Rhythm_Game::play_video()
 		ui.video->show();
 
 		player->play();
-
 	}
 }
 
@@ -129,22 +154,26 @@ void Rhythm_Game::change_next_stage()
 	switch (select_stage){
 
 	case 1:
-		ui.stage_1->setGeometry(130, 400, 60, 60);
-		ui.stage_2->setGeometry(300, 340, 120, 120);
+		ui.stage_1->hide();
+		ui.stage_2->show();
+		ui.stage_3->hide();
+		
 		stage_state = 2;
 		select_stage = 2;
 		break;
 
 	case 2:
-		ui.stage_2->setGeometry(300, 400, 60, 60);
-		ui.stage_3->setGeometry(430, 340, 120, 120);
+		ui.stage_1->hide();
+		ui.stage_2->hide();
+		ui.stage_3->show();
 		stage_state = 3;
 		select_stage = 3;
 		break;
 
 	case 3:
-		ui.stage_3->setGeometry(430, 400, 60, 60);
-		ui.stage_1->setGeometry(130, 340, 120, 120);
+		ui.stage_1->show();
+		ui.stage_2->hide();
+		ui.stage_3->hide();
 		stage_state = 1;
 		select_stage = 1;
 		break;
@@ -160,22 +189,25 @@ void Rhythm_Game::change_before_stage()
 	switch (select_stage){
 
 	case 1:
-		ui.stage_1->setGeometry(130, 400, 60, 60);
-		ui.stage_3->setGeometry(430, 340, 120, 120);
+		ui.stage_1->hide();
+		ui.stage_2->hide();
+		ui.stage_3->show();
 		stage_state = 3;
 		select_stage = 3;
 		break;
 
 	case 2:
-		ui.stage_2->setGeometry(300, 400, 60, 60);
-		ui.stage_1->setGeometry(130, 340, 120, 120);
+		ui.stage_1->show();
+		ui.stage_2->hide();
+		ui.stage_3->hide();
 		stage_state = 1;
 		select_stage = 1;
 		break;
 
 	case 3:
-		ui.stage_3->setGeometry(430, 400, 60, 60);
-		ui.stage_2->setGeometry(300, 340, 120, 120);
+		ui.stage_1->hide();
+		ui.stage_2->show();
+		ui.stage_3->hide();
 		stage_state = 2;
 		select_stage = 2;
 		break;
@@ -188,43 +220,15 @@ void Rhythm_Game::change_before_stage()
 
 void Rhythm_Game::play_game()
 {
-	timer->start(1);
-	
-	player->stop();
-	ui.video->hide();
+	play_ui();
 
-	ui.main_button->show();
-
-	connect(timer, SIGNAL(timeout()), this, SLOT(update_picture()));
+	connect(timer, SIGNAL(timeout()), this, SLOT(update_camera()));
 	connect(ui.right_button, SIGNAL(clicked()), this, SLOT(next_stage()));
-}
-
-void Rhythm_Game::next_stage()
-{
-	disconnect(ui.right_button, SIGNAL(clicked()), this, SLOT(next_stage()));
-	connect(ui.right_button, SIGNAL(clicked()), this, SLOT(play_game()));
-
-	timer->stop();
-
-	stage_state += 1;
-	if (stage_state > 3) { stage_state = 1; }
-
-	play_video();
 }
 
 void Rhythm_Game::return_main()
 {
-
-	ui.start_button->hide();
-	ui.exit_button->hide();
-	ui.main_button->hide();
-
-	ui.stage_1->show();
-	ui.stage_2->show();
-	ui.stage_3->show();
-	ui.left_button->show();
-	ui.right_button->show();
-
+	stage_ui();
 	// signal 의 중복을 막기위해 하나는 disconnect 를 해준다
 	disconnect(ui.right_button, SIGNAL(clicked()), this, SLOT(play_game()));
 }

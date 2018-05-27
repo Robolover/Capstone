@@ -61,7 +61,7 @@ public:
         exit_button->setStyleSheet(QStringLiteral("background-image: url(C:\\image/quitButtonBasic.png);"));
         stage_1 = new QPushButton(centralWidget);
         stage_1->setObjectName(QStringLiteral("stage_1"));
-        stage_1->setGeometry(QRect(130, 340, 120, 120));
+        stage_1->setGeometry(QRect(70, 340, 120, 120));
         stage_1->setStyleSheet(QStringLiteral("background-image: url(C:\\image/music_image_1.png);"));
         left_button = new QPushButton(centralWidget);
         left_button->setObjectName(QStringLiteral("left_button"));
@@ -81,11 +81,11 @@ public:
 "border-left: 10px transparent;"));
         stage_2 = new QPushButton(centralWidget);
         stage_2->setObjectName(QStringLiteral("stage_2"));
-        stage_2->setGeometry(QRect(300, 400, 60, 60));
+        stage_2->setGeometry(QRect(270, 340, 120, 120));
         stage_2->setStyleSheet(QStringLiteral("background-image: url(C:\\image/music_image_2.png);"));
         stage_3 = new QPushButton(centralWidget);
         stage_3->setObjectName(QStringLiteral("stage_3"));
-        stage_3->setGeometry(QRect(430, 400, 60, 60));
+        stage_3->setGeometry(QRect(460, 340, 120, 120));
         stage_3->setStyleSheet(QStringLiteral("background-image: url(C:\\image/music_image_3.png);"));
         video = new QGraphicsView(centralWidget);
         video->setObjectName(QStringLiteral("video"));
@@ -122,7 +122,6 @@ public:
         QObject::connect(stage_3, SIGNAL(clicked()), Rhythm_GameClass, SLOT(chose_stage()));
         QObject::connect(left_button, SIGNAL(clicked()), Rhythm_GameClass, SLOT(change_before_stage()));
         QObject::connect(main_button, SIGNAL(clicked()), Rhythm_GameClass, SLOT(return_main()));
-        QObject::connect(right_button, SIGNAL(clicked()), Rhythm_GameClass, SLOT(next_stage()));
 
         QMetaObject::connectSlotsByName(Rhythm_GameClass);
     } // setupUi

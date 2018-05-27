@@ -50,9 +50,6 @@
     <ClCompile Include="GeneratedFiles\qrc_rhythm_game.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="Image.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="stage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -71,9 +68,6 @@
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_rhythm_game.h">
       <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Image.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="stage.h">
       <Filter>Header Files</Filter>

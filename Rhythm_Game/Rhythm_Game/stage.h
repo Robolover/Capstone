@@ -11,7 +11,6 @@
 
 #include <iostream>
 
-#include "Image.h"
 #include "ui_rhythm_game.h"
 
 class Stage
