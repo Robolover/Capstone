@@ -1,7 +1,8 @@
 #ifndef STAGE_H
 #define STAGE_H
 
-#include <QtWidgets/QMainWindow>
+#include <QObject>
+#include <QMainWindow>
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QGraphicsVideoItem>
@@ -9,29 +10,32 @@
 #include <qmultimedia.h>
 #include <QMediaPlayer>
 
-#include <iostream>
-
 #include "ui_rhythm_game.h"
 
-class Stage
+class stage : public QObject
 {
+	Q_OBJECT
+
 public:
+	stage(QObject *parent);
+	~stage();
+
 	/*
 	Image image;
 
 	typedef struct Data//테스트에서 리스트에 보관할 데이터 형식
 	{
-		QUrl    start_music; // 음악 선택화면에 나오는 짧은 음악
-		QString game_music;  // 게임 음악
-		QString music_name;  // 음악 제목
-		QString music_image; // 음악 앨범
+	QUrl    start_music; // 음악 선택화면에 나오는 짧은 음악
+	QString game_music;  // 게임 음악
+	QString music_name;  // 음악 제목
+	QString music_image; // 음악 앨범
 	}Data;
 
 	typedef struct _Node
 	{
-		Data data;
-		struct _Node* next;
-		struct _Node* before;
+	Data data;
+	struct _Node* next;
+	struct _Node* before;
 	}Node;
 
 	Node *Head = NULL;
@@ -47,7 +51,7 @@ public:
 	void add_music(Data data);//노드 생성
 	void music_info();
 	void music_track();
-*/
+	*/
 
 	QGraphicsVideoItem *item;
 	QGraphicsScene *scene;
@@ -61,5 +65,4 @@ public:
 private:
 	Ui::Rhythm_GameClass ui;
 };
-
-#endif // TRACK_H
+#endif // STAGE_H

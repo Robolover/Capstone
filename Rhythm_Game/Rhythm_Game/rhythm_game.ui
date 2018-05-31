@@ -62,10 +62,10 @@
    <widget class="QPushButton" name="stage_1">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>260</x>
       <y>340</y>
-      <width>120</width>
-      <height>120</height>
+      <width>150</width>
+      <height>150</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -104,6 +104,9 @@ border-left: 10px transparent;</string>
       <height>60</height>
      </rect>
     </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::DefaultContextMenu</enum>
+    </property>
     <property name="styleSheet">
      <string notr="true">background-image: url(C:\image/rightButtonBasic.png) 3 10 3 10;
 border-top: 3px transparent;
@@ -118,10 +121,10 @@ border-left: 10px transparent;</string>
    <widget class="QPushButton" name="stage_2">
     <property name="geometry">
      <rect>
-      <x>270</x>
+      <x>260</x>
       <y>340</y>
-      <width>120</width>
-      <height>120</height>
+      <width>150</width>
+      <height>150</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -134,10 +137,10 @@ border-left: 10px transparent;</string>
    <widget class="QPushButton" name="stage_3">
     <property name="geometry">
      <rect>
-      <x>460</x>
+      <x>260</x>
       <y>340</y>
-      <width>120</width>
-      <height>120</height>
+      <width>150</width>
+      <height>150</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -270,8 +273,8 @@ border-left: 10px transparent;</string>
    <slot>chose_stage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>215</x>
-     <y>450</y>
+     <x>260</x>
+     <y>462</y>
     </hint>
     <hint type="destinationlabel">
      <x>164</x>
@@ -302,8 +305,8 @@ border-left: 10px transparent;</string>
    <slot>chose_stage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>459</x>
-     <y>441</y>
+     <x>409</x>
+     <y>453</y>
     </hint>
     <hint type="destinationlabel">
      <x>331</x>

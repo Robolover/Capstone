@@ -13,6 +13,7 @@
 
 #include "ui_rhythm_game.h"
 #include "stage.h"
+#include "game_ui.h"
 
 class Rhythm_Game : public QMainWindow
 {
@@ -22,17 +23,18 @@ public:
 	Rhythm_Game(QWidget *parent = 0);
 	~Rhythm_Game();
 
-	void move_cursor(QMouseEvent *e);
-
 	void main_ui();
 	void stage_ui();
 	void video_ui();
 	void play_ui();
 	void finish_ui();
-		
-	int select_stage = 1;
-	int stage_state  = 1;
+
+	void move_cursor(QMouseEvent *e);
+	void get_mouse_position(double x, double y);
 	void play_video();
+
+	int select_stage = 1;
+	int stage_state = 1;
 
 private:
 	Ui::Rhythm_GameClass ui;

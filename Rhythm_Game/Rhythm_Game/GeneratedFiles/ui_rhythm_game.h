@@ -61,7 +61,7 @@ public:
         exit_button->setStyleSheet(QStringLiteral("background-image: url(C:\\image/quitButtonBasic.png);"));
         stage_1 = new QPushButton(centralWidget);
         stage_1->setObjectName(QStringLiteral("stage_1"));
-        stage_1->setGeometry(QRect(70, 340, 120, 120));
+        stage_1->setGeometry(QRect(260, 340, 150, 150));
         stage_1->setStyleSheet(QStringLiteral("background-image: url(C:\\image/music_image_1.png);"));
         left_button = new QPushButton(centralWidget);
         left_button->setObjectName(QStringLiteral("left_button"));
@@ -74,6 +74,7 @@ public:
         right_button = new QPushButton(centralWidget);
         right_button->setObjectName(QStringLiteral("right_button"));
         right_button->setGeometry(QRect(570, 400, 60, 60));
+        right_button->setContextMenuPolicy(Qt::DefaultContextMenu);
         right_button->setStyleSheet(QLatin1String("background-image: url(C:\\image/rightButtonBasic.png) 3 10 3 10;\n"
 "border-top: 3px transparent;\n"
 "border-bottom: 3px transparent; \n"
@@ -81,11 +82,11 @@ public:
 "border-left: 10px transparent;"));
         stage_2 = new QPushButton(centralWidget);
         stage_2->setObjectName(QStringLiteral("stage_2"));
-        stage_2->setGeometry(QRect(270, 340, 120, 120));
+        stage_2->setGeometry(QRect(260, 340, 150, 150));
         stage_2->setStyleSheet(QStringLiteral("background-image: url(C:\\image/music_image_2.png);"));
         stage_3 = new QPushButton(centralWidget);
         stage_3->setObjectName(QStringLiteral("stage_3"));
-        stage_3->setGeometry(QRect(460, 340, 120, 120));
+        stage_3->setGeometry(QRect(260, 340, 150, 150));
         stage_3->setStyleSheet(QStringLiteral("background-image: url(C:\\image/music_image_3.png);"));
         video = new QGraphicsView(centralWidget);
         video->setObjectName(QStringLiteral("video"));
