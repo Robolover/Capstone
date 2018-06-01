@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>670</width>
-    <height>500</height>
+    <width>1370</width>
+    <height>730</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QPushButton" name="start_button">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>400</y>
-      <width>275</width>
-      <height>54</height>
+      <x>50</x>
+      <y>570</y>
+      <width>400</width>
+      <height>80</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -35,8 +35,8 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>640</width>
-      <height>480</height>
+      <width>1280</width>
+      <height>720</height>
      </rect>
     </property>
     <property name="text">
@@ -46,10 +46,10 @@
    <widget class="QPushButton" name="exit_button">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>400</y>
-      <width>275</width>
-      <height>54</height>
+      <x>690</x>
+      <y>570</y>
+      <width>400</width>
+      <height>80</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -62,14 +62,14 @@
    <widget class="QPushButton" name="stage_1">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>340</y>
-      <width>150</width>
-      <height>150</height>
+      <x>430</x>
+      <y>310</y>
+      <width>300</width>
+      <height>250</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(C:\image/music_image_1.png);</string>
+     <string notr="true">background-image: url(C:\image/stage1.png);</string>
     </property>
     <property name="text">
      <string/>
@@ -78,10 +78,10 @@
    <widget class="QPushButton" name="left_button">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>400</y>
-      <width>60</width>
-      <height>60</height>
+      <x>50</x>
+      <y>250</y>
+      <width>200</width>
+      <height>400</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -98,10 +98,10 @@ border-left: 10px transparent;</string>
    <widget class="QPushButton" name="right_button">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>400</y>
-      <width>60</width>
-      <height>60</height>
+      <x>890</x>
+      <y>250</y>
+      <width>200</width>
+      <height>400</height>
      </rect>
     </property>
     <property name="contextMenuPolicy">
@@ -121,14 +121,14 @@ border-left: 10px transparent;</string>
    <widget class="QPushButton" name="stage_2">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>340</y>
-      <width>150</width>
-      <height>150</height>
+      <x>430</x>
+      <y>310</y>
+      <width>300</width>
+      <height>250</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(C:\image/music_image_2.png);</string>
+     <string notr="true">background-image: url(C:\image/stage2.png);</string>
     </property>
     <property name="text">
      <string/>
@@ -137,14 +137,14 @@ border-left: 10px transparent;</string>
    <widget class="QPushButton" name="stage_3">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>340</y>
-      <width>150</width>
-      <height>150</height>
+      <x>430</x>
+      <y>310</y>
+      <width>300</width>
+      <height>250</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(C:\image/music_image_3.png);</string>
+     <string notr="true">background-image: url(C:\image/stage3.png);</string>
     </property>
     <property name="text">
      <string/>
@@ -155,22 +155,22 @@ border-left: 10px transparent;</string>
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>640</width>
-      <height>480</height>
+      <width>1360</width>
+      <height>720</height>
      </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="main_button">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>380</y>
-      <width>341</width>
-      <height>80</height>
+      <x>340</x>
+      <y>570</y>
+      <width>450</width>
+      <height>100</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(C:\image/great.png);</string>
+     <string notr="true">background-image: url(C:\image/mainButtonBasic.png);</string>
     </property>
     <property name="text">
      <string/>

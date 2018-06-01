@@ -1,10 +1,15 @@
 #ifndef RHYTHM_GAME_H
 #define RHYTHM_GAME_H
 
-#define TRUE 1
+#define WIDTH  1280
+#define HEIGHT 720
+
+#define TRUE  1
+#define FALSE 0
 
 #include <QtWidgets/QMainWindow>
-#include <qmouseeventtransition.h>
+#include <QStackedWidget>
+#include <QMouseEvent>
 #include <QTimer>
 
 #include "opencv2\opencv.hpp"
@@ -29,12 +34,17 @@ public:
 	void play_ui();
 	void finish_ui();
 
-	void move_cursor(QMouseEvent *e);
-	void get_mouse_position(double x, double y);
+	void get_mouse_state( QPoint &hand_point, int &finger);	
+	void click_evet(QMouseEvent *e);
+
 	void play_video();
 
 	int select_stage = 1;
-	int stage_state = 1;
+	int stage_state  = 1;
+	int finger_count = 0;
+	int click_flag   = FALSE;
+	int m_point_x = 0;
+	int m_point_y = 0;
 
 private:
 	Ui::Rhythm_GameClass ui;
@@ -42,8 +52,8 @@ private:
 	QGraphicsScene *scene;
 	QMediaPlayer* player;
 	QVideoWidget *video;
-	QTimer * timer;
-	QPoint m_pos;
+	QMouseEvent *click;
+	QTimer *timer;
 
 private slots:
 	void update_camera();

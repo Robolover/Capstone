@@ -45,27 +45,27 @@ public:
     {
         if (Rhythm_GameClass->objectName().isEmpty())
             Rhythm_GameClass->setObjectName(QStringLiteral("Rhythm_GameClass"));
-        Rhythm_GameClass->resize(670, 500);
+        Rhythm_GameClass->resize(1370, 730);
         centralWidget = new QWidget(Rhythm_GameClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         start_button = new QPushButton(centralWidget);
         start_button->setObjectName(QStringLiteral("start_button"));
-        start_button->setGeometry(QRect(30, 400, 275, 54));
+        start_button->setGeometry(QRect(50, 570, 400, 80));
         start_button->setStyleSheet(QStringLiteral("background-image: url(C:\\image/startButtonBasic.png);"));
         camera = new QLabel(centralWidget);
         camera->setObjectName(QStringLiteral("camera"));
-        camera->setGeometry(QRect(10, 10, 640, 480));
+        camera->setGeometry(QRect(10, 10, 1280, 720));
         exit_button = new QPushButton(centralWidget);
         exit_button->setObjectName(QStringLiteral("exit_button"));
-        exit_button->setGeometry(QRect(340, 400, 275, 54));
+        exit_button->setGeometry(QRect(690, 570, 400, 80));
         exit_button->setStyleSheet(QStringLiteral("background-image: url(C:\\image/quitButtonBasic.png);"));
         stage_1 = new QPushButton(centralWidget);
         stage_1->setObjectName(QStringLiteral("stage_1"));
-        stage_1->setGeometry(QRect(260, 340, 150, 150));
-        stage_1->setStyleSheet(QStringLiteral("background-image: url(C:\\image/music_image_1.png);"));
+        stage_1->setGeometry(QRect(430, 310, 300, 250));
+        stage_1->setStyleSheet(QStringLiteral("background-image: url(C:\\image/stage1.png);"));
         left_button = new QPushButton(centralWidget);
         left_button->setObjectName(QStringLiteral("left_button"));
-        left_button->setGeometry(QRect(20, 400, 60, 60));
+        left_button->setGeometry(QRect(50, 250, 200, 400));
         left_button->setStyleSheet(QLatin1String("background-image: url(C:\\image/leftButtonBasic.png) 3 10 3 10;\n"
 "border-top: 3px transparent;\n"
 "border-bottom: 3px transparent; \n"
@@ -73,7 +73,7 @@ public:
 "border-left: 10px transparent;"));
         right_button = new QPushButton(centralWidget);
         right_button->setObjectName(QStringLiteral("right_button"));
-        right_button->setGeometry(QRect(570, 400, 60, 60));
+        right_button->setGeometry(QRect(890, 250, 200, 400));
         right_button->setContextMenuPolicy(Qt::DefaultContextMenu);
         right_button->setStyleSheet(QLatin1String("background-image: url(C:\\image/rightButtonBasic.png) 3 10 3 10;\n"
 "border-top: 3px transparent;\n"
@@ -82,19 +82,19 @@ public:
 "border-left: 10px transparent;"));
         stage_2 = new QPushButton(centralWidget);
         stage_2->setObjectName(QStringLiteral("stage_2"));
-        stage_2->setGeometry(QRect(260, 340, 150, 150));
-        stage_2->setStyleSheet(QStringLiteral("background-image: url(C:\\image/music_image_2.png);"));
+        stage_2->setGeometry(QRect(430, 310, 300, 250));
+        stage_2->setStyleSheet(QStringLiteral("background-image: url(C:\\image/stage2.png);"));
         stage_3 = new QPushButton(centralWidget);
         stage_3->setObjectName(QStringLiteral("stage_3"));
-        stage_3->setGeometry(QRect(260, 340, 150, 150));
-        stage_3->setStyleSheet(QStringLiteral("background-image: url(C:\\image/music_image_3.png);"));
+        stage_3->setGeometry(QRect(430, 310, 300, 250));
+        stage_3->setStyleSheet(QStringLiteral("background-image: url(C:\\image/stage3.png);"));
         video = new QGraphicsView(centralWidget);
         video->setObjectName(QStringLiteral("video"));
-        video->setGeometry(QRect(10, 10, 640, 480));
+        video->setGeometry(QRect(10, 10, 1360, 720));
         main_button = new QPushButton(centralWidget);
         main_button->setObjectName(QStringLiteral("main_button"));
-        main_button->setGeometry(QRect(180, 380, 341, 80));
-        main_button->setStyleSheet(QStringLiteral("background-image: url(C:\\image/great.png);"));
+        main_button->setGeometry(QRect(340, 570, 450, 100));
+        main_button->setStyleSheet(QStringLiteral("background-image: url(C:\\image/mainButtonBasic.png);"));
         Rhythm_GameClass->setCentralWidget(centralWidget);
         camera->raise();
         video->raise();

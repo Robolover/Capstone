@@ -6,6 +6,9 @@ VideoCapture cap(0);
 Rhythm_Game::Rhythm_Game(QWidget *parent)
 	: QMainWindow(parent)
 {
+	cap.set(CV_CAP_PROP_FRAME_WIDTH, WIDTH);
+	cap.set(CV_CAP_PROP_FRAME_HEIGHT, HEIGHT);
+
 	ui.setupUi(this);
 
 	main_ui();
@@ -22,10 +25,11 @@ Rhythm_Game::~Rhythm_Game()
 // webcam 에서 영상을 capture
 void Rhythm_Game::update_camera()
 {
-	Mat img;
+	cv::Mat img;
 	cap >> img;
 	QImage qimg(img.data, img.cols, img.rows, QImage::Format_RGB888);
 	ui.camera->setPixmap(QPixmap::fromImage(qimg));
+	cv::Size(WIDTH, HEIGHT);
 }
 
 void Rhythm_Game::main_ui()
@@ -134,7 +138,7 @@ void Rhythm_Game::play_video()
 	if (select_stage == 1) // 파랑
 	{
 		player->setVideoOutput(item);
-		player->setMedia(QUrl::fromLocalFile("C:/music/talmo.mp4"));
+		player->setMedia(QUrl::fromLocalFile("C:/music/stage_1.mp4"));
 		player->setVolume(50);
 
 		ui.video->setViewport(video);
@@ -147,7 +151,7 @@ void Rhythm_Game::play_video()
 	else if (select_stage == 2) // 빨강
 	{
 		player->setVideoOutput(item);
-		player->setMedia(QUrl::fromLocalFile("C:/music/timo.mp4"));
+		player->setMedia(QUrl::fromLocalFile("C:/music/stage_1.mp4"));
 		player->setVolume(50);
 
 		ui.video->setViewport(video);
@@ -160,7 +164,7 @@ void Rhythm_Game::play_video()
 	else if (select_stage == 3) // 초록
 	{
 		player->setVideoOutput(item);
-		player->setMedia(QUrl::fromLocalFile("C:/music/mario.mp4"));
+		player->setMedia(QUrl::fromLocalFile("C:/music/stage_1.mp4"));
 		player->setVolume(50);
 
 		ui.video->setViewport(video);
@@ -236,6 +240,52 @@ void Rhythm_Game::change_before_stage()
 	default:
 		select_stage = 1;
 		break;
+	}
+}
+
+void Rhythm_Game::get_mouse_state( QPoint &hand_point, int &finger)
+{
+	//m_point_x = hand_point.x;
+	//m_point_y = hand_point.y;
+
+	//finger_count = finger;
+}
+
+void Rhythm_Game::click_evet(QMouseEvent *e)
+{
+	//m_point->x;
+	//m_point->y; // m_point가 button 위에 있을 조건 추가
+
+	int state = 0;
+	
+	switch (state)
+	{
+		case 0: 
+			if (finger_count == 5)
+			{
+				click_flag = FALSE;
+				state = 1;
+			}
+			break;
+
+		case 1:
+			if (finger_count == 0)
+			{
+				click_flag = TRUE;
+				state = 2;
+			}
+			break;
+
+		case 2:
+			if (finger_count == 0 && click_flag == TRUE)
+			{
+				emit SIGNAL(clicked());
+			}
+			break;
+
+		default:
+			state = 0;
+			break;
 	}
 }
 
