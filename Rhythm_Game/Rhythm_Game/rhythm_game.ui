@@ -6,186 +6,388 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1370</width>
-    <height>730</height>
+    <width>1300</width>
+    <height>750</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Rhythm_Game</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="start_button">
+   <widget class="QStackedWidget" name="stacked_widget">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>570</y>
-      <width>400</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-image: url(C:\image/startButtonBasic.png);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="camera">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
+      <x>0</x>
+      <y>12</y>
       <width>1280</width>
       <height>720</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+    <property name="currentIndex">
+     <number>3</number>
     </property>
+    <widget class="QWidget" name="main_widget">
+     <widget class="QPushButton" name="start_button">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>600</y>
+        <width>400</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(C:\image/startButtonBasic.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="quit_button">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>600</y>
+        <width>400</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(C:\image/quitButtonBasic.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="camera">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>12</y>
+        <width>1280</width>
+        <height>720</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <zorder>camera</zorder>
+     <zorder>start_button</zorder>
+     <zorder>quit_button</zorder>
+    </widget>
+    <widget class="QWidget" name="stage_widget">
+     <widget class="QPushButton" name="left_button">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>280</y>
+        <width>151</width>
+        <height>400</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(C:\image/leftButtonBasic.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="right_button">
+      <property name="geometry">
+       <rect>
+        <x>1090</x>
+        <y>280</y>
+        <width>150</width>
+        <height>400</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(C:\image/rightButtonBasic.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="stage_1">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>350</y>
+        <width>300</width>
+        <height>250</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(C:\image/stage1.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="stage_2">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>350</y>
+        <width>300</width>
+        <height>250</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(C:\image/stage2.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="stage_3">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>350</y>
+        <width>300</width>
+        <height>250</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(C:\image/stage3.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="camera_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>12</y>
+        <width>1280</width>
+        <height>720</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <zorder>camera_2</zorder>
+     <zorder>left_button</zorder>
+     <zorder>right_button</zorder>
+     <zorder>stage_1</zorder>
+     <zorder>stage_2</zorder>
+     <zorder>stage_3</zorder>
+    </widget>
+    <widget class="QWidget" name="video_widget">
+     <widget class="QGraphicsView" name="video">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>12</y>
+        <width>1280</width>
+        <height>720</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="next_button">
+      <property name="geometry">
+       <rect>
+        <x>1170</x>
+        <y>620</y>
+        <width>60</width>
+        <height>60</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(C:\image/next_button.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="play_widget">
+     <widget class="QPushButton" name="apple">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>300</width>
+        <height>300</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image : url(C:\image/apple.png)</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="bus">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>20</y>
+        <width>300</width>
+        <height>300</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image : url(C:\image/bus.png)</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="cat">
+      <property name="geometry">
+       <rect>
+        <x>660</x>
+        <y>20</y>
+        <width>300</width>
+        <height>300</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image : url(C:\image/cat.png)</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="duck">
+      <property name="geometry">
+       <rect>
+        <x>980</x>
+        <y>20</y>
+        <width>300</width>
+        <height>300</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image : url(C:\image/duck.png)</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="camera_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>12</y>
+        <width>1280</width>
+        <height>720</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>460</y>
+        <width>301</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <zorder>camera_3</zorder>
+     <zorder>apple</zorder>
+     <zorder>bus</zorder>
+     <zorder>cat</zorder>
+     <zorder>duck</zorder>
+     <zorder>pushButton</zorder>
+    </widget>
+    <widget class="QWidget" name="result_widget">
+     <widget class="QLabel" name="great">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>60</y>
+        <width>500</width>
+        <height>600</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image : url(C:\image/great.png)</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="fail">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>60</y>
+        <width>500</width>
+        <height>600</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image : url(C:\image/fail.png)</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="return_main">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>260</y>
+        <width>450</width>
+        <height>100</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image : url(C:\image/mainButtonBasic.png)</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="quit_button_2">
+      <property name="geometry">
+       <rect>
+        <x>750</x>
+        <y>430</y>
+        <width>400</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image : url(C:\image/quitButtonBasic.png)</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="camera_4">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>12</y>
+        <width>1280</width>
+        <height>720</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <zorder>camera_4</zorder>
+     <zorder>great</zorder>
+     <zorder>fail</zorder>
+     <zorder>return_main</zorder>
+     <zorder>quit_button_2</zorder>
+    </widget>
    </widget>
-   <widget class="QPushButton" name="exit_button">
-    <property name="geometry">
-     <rect>
-      <x>690</x>
-      <y>570</y>
-      <width>400</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-image: url(C:\image/quitButtonBasic.png);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="stage_1">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>310</y>
-      <width>300</width>
-      <height>250</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-image: url(C:\image/stage1.png);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="left_button">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>250</y>
-      <width>200</width>
-      <height>400</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-image: url(C:\image/leftButtonBasic.png) 3 10 3 10;
-border-top: 3px transparent;
-border-bottom: 3px transparent; 
-border-right: 10px transparent;
-border-left: 10px transparent;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="right_button">
-    <property name="geometry">
-     <rect>
-      <x>890</x>
-      <y>250</y>
-      <width>200</width>
-      <height>400</height>
-     </rect>
-    </property>
-    <property name="contextMenuPolicy">
-     <enum>Qt::DefaultContextMenu</enum>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-image: url(C:\image/rightButtonBasic.png) 3 10 3 10;
-border-top: 3px transparent;
-border-bottom: 3px transparent; 
-border-right: 10px transparent;
-border-left: 10px transparent;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="stage_2">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>310</y>
-      <width>300</width>
-      <height>250</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-image: url(C:\image/stage2.png);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="stage_3">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>310</y>
-      <width>300</width>
-      <height>250</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-image: url(C:\image/stage3.png);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QGraphicsView" name="video">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>1360</width>
-      <height>720</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="main_button">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>570</y>
-      <width>450</width>
-      <height>100</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-image: url(C:\image/mainButtonBasic.png);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <zorder>camera</zorder>
-   <zorder>video</zorder>
-   <zorder>right_button</zorder>
-   <zorder>stage_1</zorder>
-   <zorder>stage_2</zorder>
-   <zorder>stage_3</zorder>
-   <zorder>left_button</zorder>
-   <zorder>main_button</zorder>
-   <zorder>exit_button</zorder>
-   <zorder>start_button</zorder>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -209,28 +411,28 @@ border-left: 10px transparent;</string>
    <slot>start_button()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>240</x>
-     <y>434</y>
+     <x>249</x>
+     <y>663</y>
     </hint>
     <hint type="destinationlabel">
-     <x>143</x>
-     <y>499</y>
+     <x>649</x>
+     <y>374</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>exit_button</sender>
+   <sender>quit_button</sender>
    <signal>clicked()</signal>
    <receiver>Rhythm_GameClass</receiver>
    <slot>exit_button()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>360</x>
-     <y>434</y>
+     <x>1049</x>
+     <y>663</y>
     </hint>
     <hint type="destinationlabel">
-     <x>294</x>
-     <y>499</y>
+     <x>649</x>
+     <y>374</y>
     </hint>
    </hints>
   </connection>
@@ -241,76 +443,12 @@ border-left: 10px transparent;</string>
    <slot>change_next_stage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>614</x>
-     <y>442</y>
+     <x>1164</x>
+     <y>503</y>
     </hint>
     <hint type="destinationlabel">
-     <x>654</x>
-     <y>431</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>stage_2</sender>
-   <signal>clicked()</signal>
-   <receiver>Rhythm_GameClass</receiver>
-   <slot>chose_stage()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>329</x>
-     <y>441</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>656</x>
-     <y>249</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>stage_1</sender>
-   <signal>clicked()</signal>
-   <receiver>Rhythm_GameClass</receiver>
-   <slot>chose_stage()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>260</x>
-     <y>462</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>164</x>
-     <y>499</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>right_button</sender>
-   <signal>clicked()</signal>
-   <receiver>Rhythm_GameClass</receiver>
-   <slot>play_game()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>599</x>
-     <y>441</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>329</x>
-     <y>249</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>stage_3</sender>
-   <signal>clicked()</signal>
-   <receiver>Rhythm_GameClass</receiver>
-   <slot>chose_stage()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>409</x>
-     <y>453</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>331</x>
-     <y>249</y>
+     <x>649</x>
+     <y>374</y>
     </hint>
    </hints>
   </connection>
@@ -321,28 +459,124 @@ border-left: 10px transparent;</string>
    <slot>change_before_stage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>23</x>
-     <y>458</y>
+     <x>125</x>
+     <y>503</y>
     </hint>
     <hint type="destinationlabel">
-     <x>87</x>
-     <y>13</y>
+     <x>649</x>
+     <y>374</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>main_button</sender>
+   <sender>stage_1</sender>
    <signal>clicked()</signal>
    <receiver>Rhythm_GameClass</receiver>
-   <slot>return_main()</slot>
+   <slot>chose_stage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>437</x>
-     <y>402</y>
+     <x>669</x>
+     <y>498</y>
     </hint>
     <hint type="destinationlabel">
-     <x>503</x>
-     <y>0</y>
+     <x>649</x>
+     <y>374</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>stage_2</sender>
+   <signal>clicked()</signal>
+   <receiver>Rhythm_GameClass</receiver>
+   <slot>chose_stage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>669</x>
+     <y>498</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>649</x>
+     <y>374</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>stage_3</sender>
+   <signal>clicked()</signal>
+   <receiver>Rhythm_GameClass</receiver>
+   <slot>chose_stage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>669</x>
+     <y>498</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>649</x>
+     <y>374</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>return_main</sender>
+   <signal>clicked()</signal>
+   <receiver>Rhythm_GameClass</receiver>
+   <slot>start_button()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>944</x>
+     <y>333</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>649</x>
+     <y>374</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>quit_button_2</sender>
+   <signal>clicked()</signal>
+   <receiver>Rhythm_GameClass</receiver>
+   <slot>exit_button()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>949</x>
+     <y>493</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>649</x>
+     <y>374</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>next_button</sender>
+   <signal>clicked()</signal>
+   <receiver>Rhythm_GameClass</receiver>
+   <slot>play_game()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1199</x>
+     <y>673</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>649</x>
+     <y>374</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Rhythm_GameClass</receiver>
+   <slot>result()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>397</x>
+     <y>494</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>417</x>
+     <y>17</y>
     </hint>
    </hints>
   </connection>
@@ -356,5 +590,6 @@ border-left: 10px transparent;</string>
   <slot>play_game()</slot>
   <slot>return_main()</slot>
   <slot>next_stage()</slot>
+  <slot>result()</slot>
  </slots>
 </ui>

@@ -28,12 +28,6 @@ public:
 	Rhythm_Game(QWidget *parent = 0);
 	~Rhythm_Game();
 
-	void main_ui();
-	void stage_ui();
-	void video_ui();
-	void play_ui();
-	void finish_ui();
-
 	void get_mouse_state( QPoint &hand_point, int &finger);	
 	void click_evet(QMouseEvent *e);
 
@@ -59,11 +53,11 @@ private slots:
 	void update_camera();
 	void start_button();
 	void exit_button();
-	void return_main();
 	void change_next_stage();
 	void change_before_stage();
 	void chose_stage();
 	void play_game();
+	void result();
 };
 
 #endif // RHYTHM_GAME_H

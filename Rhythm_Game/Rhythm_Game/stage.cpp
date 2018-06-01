@@ -62,5 +62,5 @@ stage::~stage()
 
 void stage::play_video()
 {
-	ui.main_button->show();
+
 }
