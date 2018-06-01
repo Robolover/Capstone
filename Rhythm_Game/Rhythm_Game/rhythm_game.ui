@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="main_widget">
      <widget class="QPushButton" name="start_button">
@@ -173,9 +173,9 @@
      <zorder>camera_2</zorder>
      <zorder>left_button</zorder>
      <zorder>right_button</zorder>
-     <zorder>stage_1</zorder>
      <zorder>stage_2</zorder>
      <zorder>stage_3</zorder>
+     <zorder>stage_1</zorder>
     </widget>
     <widget class="QWidget" name="video_widget">
      <widget class="QGraphicsView" name="video">
@@ -283,25 +283,11 @@
        <string/>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton">
-      <property name="geometry">
-       <rect>
-        <x>330</x>
-        <y>460</y>
-        <width>301</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>PushButton</string>
-      </property>
-     </widget>
      <zorder>camera_3</zorder>
      <zorder>apple</zorder>
      <zorder>bus</zorder>
      <zorder>cat</zorder>
      <zorder>duck</zorder>
-     <zorder>pushButton</zorder>
     </widget>
     <widget class="QWidget" name="result_widget">
      <widget class="QLabel" name="great">
@@ -382,10 +368,10 @@
       </property>
      </widget>
      <zorder>camera_4</zorder>
-     <zorder>great</zorder>
      <zorder>fail</zorder>
      <zorder>return_main</zorder>
      <zorder>quit_button_2</zorder>
+     <zorder>great</zorder>
     </widget>
    </widget>
   </widget>
@@ -565,18 +551,66 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButton</sender>
+   <sender>bus</sender>
    <signal>clicked()</signal>
    <receiver>Rhythm_GameClass</receiver>
-   <slot>result()</slot>
+   <slot>check_answer()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>397</x>
-     <y>494</y>
+     <x>489</x>
+     <y>193</y>
     </hint>
     <hint type="destinationlabel">
-     <x>417</x>
-     <y>17</y>
+     <x>649</x>
+     <y>374</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cat</sender>
+   <signal>clicked()</signal>
+   <receiver>Rhythm_GameClass</receiver>
+   <slot>check_answer()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>809</x>
+     <y>193</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>649</x>
+     <y>374</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>duck</sender>
+   <signal>clicked()</signal>
+   <receiver>Rhythm_GameClass</receiver>
+   <slot>check_answer()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1129</x>
+     <y>193</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>649</x>
+     <y>374</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>apple</sender>
+   <signal>clicked()</signal>
+   <receiver>Rhythm_GameClass</receiver>
+   <slot>check_answer()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>169</x>
+     <y>193</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>649</x>
+     <y>374</y>
     </hint>
    </hints>
   </connection>
@@ -591,5 +625,6 @@
   <slot>return_main()</slot>
   <slot>next_stage()</slot>
   <slot>result()</slot>
+  <slot>check_answer()</slot>
  </slots>
 </ui>

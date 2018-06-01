@@ -9,6 +9,12 @@
 
 #include <QtWidgets/QMainWindow>
 #include <QStackedWidget>
+#include <QGraphicsVideoItem>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QVideoWidget>
+#include <QMediaPlayer>
+#include <QMultimedia>
 #include <QMouseEvent>
 #include <QTimer>
 
@@ -17,9 +23,6 @@
 #include "opencv2\core.hpp"
 
 #include "ui_rhythm_game.h"
-#include "stage.h"
-#include "game_ui.h"
-
 class Rhythm_Game : public QMainWindow
 {
 	Q_OBJECT
@@ -30,13 +33,13 @@ public:
 
 	void get_mouse_state( QPoint &hand_point, int &finger);	
 	void click_evet(QMouseEvent *e);
-
 	void play_video();
 
 	int select_stage = 1;
-	int stage_state  = 1;
-	int finger_count = 0;
+	int limit_stage  = 1;
+	int answer_correct = 0;
 	int click_flag   = FALSE;
+	int finger_count = 0;
 	int m_point_x = 0;
 	int m_point_y = 0;
 
@@ -48,7 +51,8 @@ private:
 	QVideoWidget *video;
 	QMouseEvent *click;
 	QTimer *timer;
-
+	QTimer *timer_2;
+	
 private slots:
 	void update_camera();
 	void start_button();
@@ -57,6 +61,7 @@ private slots:
 	void change_before_stage();
 	void chose_stage();
 	void play_game();
+	void check_answer();
 	void result();
 };
 

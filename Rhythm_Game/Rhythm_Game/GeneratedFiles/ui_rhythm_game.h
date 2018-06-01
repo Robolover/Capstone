@@ -50,7 +50,6 @@ public:
     QPushButton *cat;
     QPushButton *duck;
     QLabel *camera_3;
-    QPushButton *pushButton;
     QWidget *result_widget;
     QLabel *great;
     QLabel *fail;
@@ -116,9 +115,9 @@ public:
         camera_2->raise();
         left_button->raise();
         right_button->raise();
-        stage_1->raise();
         stage_2->raise();
         stage_3->raise();
+        stage_1->raise();
         video_widget = new QWidget();
         video_widget->setObjectName(QStringLiteral("video_widget"));
         video = new QGraphicsView(video_widget);
@@ -150,16 +149,12 @@ public:
         camera_3 = new QLabel(play_widget);
         camera_3->setObjectName(QStringLiteral("camera_3"));
         camera_3->setGeometry(QRect(0, 12, 1280, 720));
-        pushButton = new QPushButton(play_widget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(330, 460, 301, 41));
         stacked_widget->addWidget(play_widget);
         camera_3->raise();
         apple->raise();
         bus->raise();
         cat->raise();
         duck->raise();
-        pushButton->raise();
         result_widget = new QWidget();
         result_widget->setObjectName(QStringLiteral("result_widget"));
         great = new QLabel(result_widget);
@@ -183,10 +178,10 @@ public:
         camera_4->setGeometry(QRect(0, 12, 1280, 720));
         stacked_widget->addWidget(result_widget);
         camera_4->raise();
-        great->raise();
         fail->raise();
         return_main->raise();
         quit_button_2->raise();
+        great->raise();
         Rhythm_GameClass->setCentralWidget(centralWidget);
         mainToolBar = new QToolBar(Rhythm_GameClass);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -206,9 +201,12 @@ public:
         QObject::connect(return_main, SIGNAL(clicked()), Rhythm_GameClass, SLOT(start_button()));
         QObject::connect(quit_button_2, SIGNAL(clicked()), Rhythm_GameClass, SLOT(exit_button()));
         QObject::connect(next_button, SIGNAL(clicked()), Rhythm_GameClass, SLOT(play_game()));
-        QObject::connect(pushButton, SIGNAL(clicked()), Rhythm_GameClass, SLOT(result()));
+        QObject::connect(bus, SIGNAL(clicked()), Rhythm_GameClass, SLOT(check_answer()));
+        QObject::connect(cat, SIGNAL(clicked()), Rhythm_GameClass, SLOT(check_answer()));
+        QObject::connect(duck, SIGNAL(clicked()), Rhythm_GameClass, SLOT(check_answer()));
+        QObject::connect(apple, SIGNAL(clicked()), Rhythm_GameClass, SLOT(check_answer()));
 
-        stacked_widget->setCurrentIndex(3);
+        stacked_widget->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(Rhythm_GameClass);
@@ -232,7 +230,6 @@ public:
         cat->setText(QString());
         duck->setText(QString());
         camera_3->setText(QString());
-        pushButton->setText(QApplication::translate("Rhythm_GameClass", "PushButton", 0));
         great->setText(QString());
         fail->setText(QString());
         return_main->setText(QString());
