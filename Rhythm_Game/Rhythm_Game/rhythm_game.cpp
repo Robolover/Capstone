@@ -12,9 +12,9 @@ Rhythm_Game::Rhythm_Game(QWidget *parent)
 	cap.set(CV_CAP_PROP_FRAME_WIDTH, WIDTH);
 	cap.set(CV_CAP_PROP_FRAME_HEIGHT, HEIGHT);
 
-	timer = new QTimer(this);
-	timer->start(1);
-	connect(timer, SIGNAL(timeout()), this, SLOT(update_camera()));
+	camera_timer = new QTimer(this);
+	camera_timer->start(1);
+	connect(camera_timer, SIGNAL(timeout()), this, SLOT(update_camera()));
 }
 
 Rhythm_Game::~Rhythm_Game(){
@@ -34,57 +34,155 @@ void Rhythm_Game::update_camera(){
 }
 
 // exit_button evetn : 종료
-void Rhythm_Game::exit_button(){
+void Rhythm_Game::exit_game(){
 	this->close();
 }
 
 // start_button event : 게임 시작
-void Rhythm_Game::start_button(){	
+void Rhythm_Game::enter_stage(){	
 	ui.stacked_widget->setCurrentWidget(ui.stage_widget);
 }
 
-void Rhythm_Game::chose_stage(){
+void Rhythm_Game::play_video(){
 	ui.stacked_widget->setCurrentWidget(ui.video_widget);
-	play_video();
+	emit video_function();
 }
 
 void Rhythm_Game::play_game(){
-	timer_2 = new QTimer();
-	timer_2->start(5000);
-
-	player->stop();
 	ui.stacked_widget->setCurrentWidget(ui.play_widget);
-
-	connect(timer_2, SIGNAL(timeout()), this, SLOT(result()));
+	emit play_function();
 }
 
-void Rhythm_Game::play_video(){
-	player = new QMediaPlayer();
-	item   = new QGraphicsVideoItem;
-	scene  = new QGraphicsScene();
-	video  = new QVideoWidget();
+void Rhythm_Game::video_function(){
+	video_timer = new QTimer();
+	//video_timer->start(VIDEO_TIMER);
 
-	player->setVideoOutput(item);
+	ui.stacked_widget->setCurrentWidget(ui.video_widget);
+	//ui.next_button->hide();
+	video_player();
+
+	connect(video_timer, SIGNAL(timeout()), ui.next_button, SLOT(show()));
+}
+
+void Rhythm_Game::play_function(){
+	video_play->stop();
+
+	music_play = new QMediaPlayer;
+	music_play->setMedia(QUrl::fromLocalFile("C:/music/video_1.mp3"));
+	music_play->setVolume(50);
+	music_play->play();
+
+	intro_timer = new QTimer();	
+	intro_timer->start(INTRO_TIMER);
+
+	connect(intro_timer, SIGNAL(timeout()), this, SLOT(apple()));
+
+}
+
+void Rhythm_Game::apple(){
+	intro_timer->stop();
+
+	apple_timer = new QTimer();
+	apple_timer->start(GAME_TIMER);
+
+	connect(ui.apple, SIGNAL(clicked()), this, SLOT(check_answer()));
+	connect(apple_timer, SIGNAL(timeout()), this, SLOT(bus()));
+}
+
+void Rhythm_Game::bus(){
+	apple_timer->stop();
+
+	bus_timer = new QTimer();
+	bus_timer->start(GAME_TIMER);
+
+	disconnect(ui.apple, SIGNAL(clicked()), this, SLOT(check_answer()));
+	connect(ui.bus, SIGNAL(clicked()), this, SLOT(check_answer()));
+	connect(bus_timer, SIGNAL(timeout()), this, SLOT(cat()));
+}
+
+void Rhythm_Game::cat(){
+	bus_timer->stop();
+
+	cat_timer = new QTimer();
+	cat_timer->start(GAME_TIMER);
+
+	disconnect(ui.bus, SIGNAL(clicked()), this, SLOT(check_answer()));
+	connect(ui.cat, SIGNAL(clicked()), this, SLOT(check_answer()));
+	connect(cat_timer, SIGNAL(timeout()), this, SLOT(duck()));
+}
+
+void Rhythm_Game::duck(){
+	cat_timer->stop();
+
+	duck_timer = new QTimer();
+	duck_timer->start(GAME_TIMER);
+
+	disconnect(ui.cat, SIGNAL(clicked()), this, SLOT(check_answer()));
+	connect(ui.duck, SIGNAL(clicked()), this, SLOT(check_answer()));
+	connect(duck_timer, SIGNAL(timeout()), this, SLOT(finish_game()));
+}
+
+void Rhythm_Game::finish_game(){
+	duck_timer->stop();
+
+	timer_finish = new QTimer();
+	timer_finish->start(FINISH_TIMER);
+
+	disconnect(ui.duck, SIGNAL(clicked()), this, SLOT(check_answer()));
+	connect(timer_finish, SIGNAL(timeout()), this, SLOT(result()));
+}
+
+void Rhythm_Game::answer_function(){
+	answer_correct += 1;
+}
+
+void Rhythm_Game::result(){
+	timer_finish->stop();
+
+	if (answer_correct == 4){
+		ui.stacked_widget->setCurrentWidget(ui.result_widget);
+		ui.great->show();
+		ui.fail->hide();
+
+		//if (limit_stage < 3){
+		//	limit_stage += 1;
+		//}
+	}
+
+	else {
+		ui.stacked_widget->setCurrentWidget(ui.result_widget);
+		ui.great->hide();
+		ui.fail->show();
+	}
+}
+
+void Rhythm_Game::video_player(){
+	video_play = new QMediaPlayer();
+	item       = new QGraphicsVideoItem;
+	scene      = new QGraphicsScene();
+	video      = new QVideoWidget();
+
+	video_play->setVideoOutput(item);
 
 	if (select_stage == 1)	{
-		player->setMedia(QUrl::fromLocalFile("C:/music/stage_1.mp4"));
+		video_play->setMedia(QUrl::fromLocalFile("C:/music/stage_1.mp4"));
 	}
 
 	else if (select_stage == 2)	{
-		player->setMedia(QUrl::fromLocalFile("C:/music/stage_1.mp4"));
+		video_play->setMedia(QUrl::fromLocalFile("C:/music/stage_1.mp4"));
 	}
 
 	else if (select_stage == 3)	{
-		player->setMedia(QUrl::fromLocalFile("C:/music/stage_1.mp4"));
+		video_play->setMedia(QUrl::fromLocalFile("C:/music/stage_1.mp4"));
 	}
 
-	player->setVolume(50);
+	video_play->setVolume(50);
 
 	ui.video->setViewport(video);
-	player->setVideoOutput(video);
+	video_play->setVideoOutput(video);
 	ui.video->show();
 
-	player->play();
+	video_play->play();
 }
 
 void Rhythm_Game::change_next_stage() {
@@ -150,30 +248,6 @@ void Rhythm_Game::change_before_stage() {
 	default:
 		select_stage = 1;
 		break;
-	}
-}
-
-void Rhythm_Game::check_answer()
-{
-	answer_correct += 1;
-}
-
-void Rhythm_Game::result()
-{
-	if (answer_correct == 4){
-		ui.stacked_widget->setCurrentWidget(ui.result_widget);
-		ui.great->show();
-		ui.fail->hide();
-
-		if (limit_stage < 3){
-			limit_stage += 1;
-		}
-	}
-
-	else {
-		ui.stacked_widget->setCurrentWidget(ui.result_widget);
-		ui.great->hide();
-		ui.fail->show();
 	}
 }
 

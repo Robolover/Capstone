@@ -209,10 +209,10 @@
      <widget class="QPushButton" name="apple">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>20</y>
-        <width>300</width>
-        <height>300</height>
+        <x>1020</x>
+        <y>420</y>
+        <width>200</width>
+        <height>200</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -225,10 +225,10 @@
      <widget class="QPushButton" name="bus">
       <property name="geometry">
        <rect>
-        <x>340</x>
-        <y>20</y>
-        <width>300</width>
-        <height>300</height>
+        <x>330</x>
+        <y>120</y>
+        <width>200</width>
+        <height>200</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -241,10 +241,10 @@
      <widget class="QPushButton" name="cat">
       <property name="geometry">
        <rect>
-        <x>660</x>
-        <y>20</y>
-        <width>300</width>
-        <height>300</height>
+        <x>730</x>
+        <y>120</y>
+        <width>200</width>
+        <height>200</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -257,10 +257,10 @@
      <widget class="QPushButton" name="duck">
       <property name="geometry">
        <rect>
-        <x>980</x>
-        <y>20</y>
-        <width>300</width>
-        <height>300</height>
+        <x>50</x>
+        <y>420</y>
+        <width>200</width>
+        <height>200</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -394,7 +394,7 @@
    <sender>start_button</sender>
    <signal>clicked()</signal>
    <receiver>Rhythm_GameClass</receiver>
-   <slot>start_button()</slot>
+   <slot>enter_stage()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>249</x>
@@ -410,7 +410,7 @@
    <sender>quit_button</sender>
    <signal>clicked()</signal>
    <receiver>Rhythm_GameClass</receiver>
-   <slot>exit_button()</slot>
+   <slot>exit_game()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>1049</x>
@@ -458,7 +458,7 @@
    <sender>stage_1</sender>
    <signal>clicked()</signal>
    <receiver>Rhythm_GameClass</receiver>
-   <slot>chose_stage()</slot>
+   <slot>play_video()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>669</x>
@@ -474,7 +474,7 @@
    <sender>stage_2</sender>
    <signal>clicked()</signal>
    <receiver>Rhythm_GameClass</receiver>
-   <slot>chose_stage()</slot>
+   <slot>play_video()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>669</x>
@@ -490,7 +490,7 @@
    <sender>stage_3</sender>
    <signal>clicked()</signal>
    <receiver>Rhythm_GameClass</receiver>
-   <slot>chose_stage()</slot>
+   <slot>play_video()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>669</x>
@@ -506,14 +506,14 @@
    <sender>return_main</sender>
    <signal>clicked()</signal>
    <receiver>Rhythm_GameClass</receiver>
-   <slot>start_button()</slot>
+   <slot>enter_stage()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>944</x>
      <y>333</y>
     </hint>
     <hint type="destinationlabel">
-     <x>649</x>
+     <x>648</x>
      <y>374</y>
     </hint>
    </hints>
@@ -522,7 +522,7 @@
    <sender>quit_button_2</sender>
    <signal>clicked()</signal>
    <receiver>Rhythm_GameClass</receiver>
-   <slot>exit_button()</slot>
+   <slot>exit_game()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>949</x>
@@ -589,8 +589,8 @@
    <slot>check_answer()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1129</x>
-     <y>193</y>
+     <x>249</x>
+     <y>444</y>
     </hint>
     <hint type="destinationlabel">
      <x>649</x>
@@ -605,8 +605,8 @@
    <slot>check_answer()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>169</x>
-     <y>193</y>
+     <x>1020</x>
+     <y>444</y>
     </hint>
     <hint type="destinationlabel">
      <x>649</x>
@@ -616,15 +616,16 @@
   </connection>
  </connections>
  <slots>
-  <slot>start_button()</slot>
-  <slot>exit_button()</slot>
+  <slot>enter_stage()</slot>
+  <slot>exit_game()</slot>
   <slot>change_next_stage()</slot>
-  <slot>chose_stage()</slot>
+  <slot>play_video()</slot>
   <slot>change_before_stage()</slot>
   <slot>play_game()</slot>
   <slot>return_main()</slot>
   <slot>next_stage()</slot>
   <slot>result()</slot>
   <slot>check_answer()</slot>
+  <slot>return_stage()</slot>
  </slots>
 </ui>

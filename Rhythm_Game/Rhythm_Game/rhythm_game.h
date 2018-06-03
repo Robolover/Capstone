@@ -4,6 +4,11 @@
 #define WIDTH  1280
 #define HEIGHT 720
 
+#define VIDEO_TIMER  45000 // 40段
+#define INTRO_TIMER  14000 // 14段
+#define GAME_TIMER   4000  // 4段
+#define FINISH_TIMER 9000  // 9段
+
 #define TRUE  1
 #define FALSE 0
 
@@ -33,10 +38,11 @@ public:
 
 	void get_mouse_state( QPoint &hand_point, int &finger);	
 	void click_evet(QMouseEvent *e);
-	void play_video();
+	void video_player();
 
 	int select_stage = 1;
 	int limit_stage  = 1;
+	int timer_count = 0;
 	int answer_correct = 0;
 	int click_flag   = FALSE;
 	int finger_count = 0;
@@ -47,22 +53,38 @@ private:
 	Ui::Rhythm_GameClass ui;
 	QGraphicsVideoItem *item;
 	QGraphicsScene *scene;
-	QMediaPlayer* player;
+	QMediaPlayer* video_play;
+	QMediaPlayer* music_play;
 	QVideoWidget *video;
 	QMouseEvent *click;
-	QTimer *timer;
-	QTimer *timer_2;
-	
+	QTimer *camera_timer;
+	QTimer *video_timer;
+	QTimer *intro_timer;
+	QTimer *apple_timer;
+	QTimer *bus_timer;
+	QTimer *cat_timer;
+	QTimer *duck_timer;
+	QTimer *timer_finish;
+
 private slots:
 	void update_camera();
-	void start_button();
-	void exit_button();
+	void enter_stage();
+	void exit_game();
 	void change_next_stage();
 	void change_before_stage();
-	void chose_stage();
+	void play_video();
 	void play_game();
-	void check_answer();
 	void result();
+
+	void video_function();
+	void play_function();
+	void answer_function();
+
+	void apple();
+	void bus();
+	void cat();
+	void duck();
+	void finish_game();
 };
 
 #endif // RHYTHM_GAME_H

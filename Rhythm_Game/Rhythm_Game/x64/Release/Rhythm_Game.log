@@ -1,7 +1,7 @@
-﻿Build started 2018-06-02 오전 7:04:37.
+﻿Build started 2018-06-03 오후 10:03:51.
      1>Project "D:\Users\BoGyeong\source\repos\Project\capstone\Rhythm_Game\Rhythm_Game\Rhythm_Game.vcxproj" on node 2 (Build target(s)).
      1>CustomBuild:
-         Uic'ing rhythm_game.ui...
+         Moc'ing rhythm_game.h...
        ClCompile:
          D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I"D:\opencv-3.4.1\build\install\include" /I.\GeneratedFiles /I. /ID:\Qt\5.3\msvc2013_64_opengl\include /I.\GeneratedFiles\Release /ID:\Qt\5.3\msvc2013_64_opengl\include\QtCore /ID:\Qt\5.3\msvc2013_64_opengl\include\QtGui /ID:\Qt\5.3\msvc2013_64_opengl\include\QtWidgets /ID:\Qt\5.3\msvc2013_64_opengl\include\QtMultimedia /ID:\Qt\5.3\msvc2013_64_opengl\include\QtMultimediaWidgets /nologo /W1 /WX- /O2 /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_NO_DEBUG /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_WIDGETS_LIB /D QT_MULTIMEDIA_LIB /D QT_MULTIMEDIAWIDGETS_LIB /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt GeneratedFiles\Release\moc_rhythm_game.cpp main.cpp rhythm_game.cpp
          moc_rhythm_game.cpp
@@ -18,4 +18,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:07.84
+Time Elapsed 00:00:07.39
