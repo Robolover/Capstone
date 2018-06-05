@@ -24,8 +24,33 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>0</number>
     </property>
+    <widget class="QWidget" name="intro_widget">
+     <widget class="QGraphicsView" name="intro_video">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>12</y>
+        <width>1280</width>
+        <height>720</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>12</y>
+        <width>1280</width>
+        <height>720</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
     <widget class="QWidget" name="main_widget">
      <widget class="QPushButton" name="start_button">
       <property name="geometry">

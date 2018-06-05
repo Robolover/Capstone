@@ -1,9 +1,6 @@
 #ifndef RHYTHM_GAME_H
 #define RHYTHM_GAME_H
 
-#define WIDTH  1280
-#define HEIGHT 720
-
 #define VIDEO_TIMER  45000 // 40√ 
 #define INTRO_TIMER  14000 // 14√ 
 #define GAME_TIMER   4000  // 4√ 
@@ -23,9 +20,8 @@
 #include <QMouseEvent>
 #include <QTimer>
 
-#include "opencv2\opencv.hpp"
-#include "opencv2\highgui.hpp"
-#include "opencv2\core.hpp"
+#include "includes.h"
+#include "hand.hpp"
 
 #include "ui_rhythm_game.h"
 class Rhythm_Game : public QMainWindow
@@ -49,6 +45,8 @@ public:
 	int m_point_x = 0;
 	int m_point_y = 0;
 
+	Cap *cap = new Cap();
+
 private:
 	Ui::Rhythm_GameClass ui;
 	QGraphicsVideoItem *item;
@@ -68,6 +66,7 @@ private:
 
 private slots:
 	void update_camera();
+	void intro_video();
 	void enter_stage();
 	void exit_game();
 	void change_next_stage();

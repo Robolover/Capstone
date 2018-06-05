@@ -1,17 +1,14 @@
 #include "rhythm_game.h"
 
 using namespace cv;
-VideoCapture cap(0);
 
 Rhythm_Game::Rhythm_Game(QWidget *parent)
 	: QMainWindow(parent)
-{
+{	
 	ui.setupUi(this);
 	ui.stacked_widget->setCurrentWidget(ui.main_widget);
-
-	cap.set(CV_CAP_PROP_FRAME_WIDTH, WIDTH);
-	cap.set(CV_CAP_PROP_FRAME_HEIGHT, HEIGHT);
-
+	//emit intro_video();
+	
 	camera_timer = new QTimer(this);
 	camera_timer->start(1);
 	connect(camera_timer, SIGNAL(timeout()), this, SLOT(update_camera()));
@@ -23,14 +20,31 @@ Rhythm_Game::~Rhythm_Game(){
 
 // webcam 에서 영상을 capture
 void Rhythm_Game::update_camera(){
-	cv::Mat img;
-	cv::Size(WIDTH, HEIGHT);
-	cap >> img;
-	QImage qimg(img.data, img.cols, img.rows, QImage::Format_RGB888);
+	cv::Mat* img;
+	img = cap->ReadCam();
+
+	QImage qimg(img->data, img->cols, img->rows, QImage::Format_RGB888);
 	ui.camera->setPixmap(QPixmap::fromImage(qimg));
 	ui.camera_2->setPixmap(QPixmap::fromImage(qimg));
 	ui.camera_3->setPixmap(QPixmap::fromImage(qimg));
 	ui.camera_4->setPixmap(QPixmap::fromImage(qimg));
+}
+
+void Rhythm_Game::intro_video(){
+	video_play = new QMediaPlayer();
+	item = new QGraphicsVideoItem;
+	scene = new QGraphicsScene();
+	video = new QVideoWidget();
+
+	video_play->setVideoOutput(item);
+	video_play->setMedia(QUrl::fromLocalFile("C:/music/intro.mp4"));
+	video_play->setVolume(50);
+
+	ui.intro_video->setViewport(video);
+	video_play->setVideoOutput(video);
+	ui.intro_video->show();
+
+	video_play->play();
 }
 
 // exit_button evetn : 종료
@@ -57,7 +71,6 @@ void Rhythm_Game::video_function(){
 	video_timer = new QTimer();
 	//video_timer->start(VIDEO_TIMER);
 
-	ui.stacked_widget->setCurrentWidget(ui.video_widget);
 	//ui.next_button->hide();
 	video_player();
 
@@ -76,7 +89,6 @@ void Rhythm_Game::play_function(){
 	intro_timer->start(INTRO_TIMER);
 
 	connect(intro_timer, SIGNAL(timeout()), this, SLOT(apple()));
-
 }
 
 void Rhythm_Game::apple(){

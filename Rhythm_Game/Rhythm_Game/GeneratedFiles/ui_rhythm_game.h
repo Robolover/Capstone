@@ -30,6 +30,9 @@ class Ui_Rhythm_GameClass
 public:
     QWidget *centralWidget;
     QStackedWidget *stacked_widget;
+    QWidget *intro_widget;
+    QGraphicsView *intro_video;
+    QLabel *label;
     QWidget *main_widget;
     QPushButton *start_button;
     QPushButton *quit_button;
@@ -69,6 +72,15 @@ public:
         stacked_widget = new QStackedWidget(centralWidget);
         stacked_widget->setObjectName(QStringLiteral("stacked_widget"));
         stacked_widget->setGeometry(QRect(0, 12, 1280, 720));
+        intro_widget = new QWidget();
+        intro_widget->setObjectName(QStringLiteral("intro_widget"));
+        intro_video = new QGraphicsView(intro_widget);
+        intro_video->setObjectName(QStringLiteral("intro_video"));
+        intro_video->setGeometry(QRect(0, 12, 1280, 720));
+        label = new QLabel(intro_widget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(0, 12, 1280, 720));
+        stacked_widget->addWidget(intro_widget);
         main_widget = new QWidget();
         main_widget->setObjectName(QStringLiteral("main_widget"));
         start_button = new QPushButton(main_widget);
@@ -206,7 +218,7 @@ public:
         QObject::connect(duck, SIGNAL(clicked()), Rhythm_GameClass, SLOT(check_answer()));
         QObject::connect(apple, SIGNAL(clicked()), Rhythm_GameClass, SLOT(check_answer()));
 
-        stacked_widget->setCurrentIndex(4);
+        stacked_widget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(Rhythm_GameClass);
@@ -215,6 +227,7 @@ public:
     void retranslateUi(QMainWindow *Rhythm_GameClass)
     {
         Rhythm_GameClass->setWindowTitle(QApplication::translate("Rhythm_GameClass", "Rhythm_Game", 0));
+        label->setText(QString());
         start_button->setText(QString());
         quit_button->setText(QString());
         camera->setText(QString());
