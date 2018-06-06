@@ -263,18 +263,15 @@ void Rhythm_Game::change_before_stage() {
 	}
 }
 
-/*
 void Rhythm_Game::get_mouse_state(){
 	flag = cap->qt_flag;
 
 	if (flag == TRUE){
 		m_point = cap->GetPoint();
 	}
-	//m_point.x;
 }
 
 void Rhythm_Game::click_evet(Ui::Rhythm_GameClass *ui)
 {
 	//ui->	
 }
-*/
