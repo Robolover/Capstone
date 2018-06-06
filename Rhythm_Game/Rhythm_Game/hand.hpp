@@ -1,7 +1,8 @@
 #ifndef CAP
 #define CAP
-#include "includes.h"
+#include <includes.h>
 #endif
+
 
 #define YCbCr
 //#define HSV
@@ -25,7 +26,7 @@ private:
 	Rect ROI[2];
 	Point centerOfHand, draw_center;
 	bool isClicked;
-	
+
 	double scale;
 
 	/*Detecting*/
@@ -56,7 +57,7 @@ private:
 public:
 	bool qt_flag;
 
-	Cap(string fileName=""){
+	Cap(string fileName = ""){
 		sz.width = 1280, sz.height = 720;
 		ROI[0] = Rect(150, 120, 500, 500);
 		isClicked = false;
@@ -116,7 +117,7 @@ public:
 		//cap = VideoCapture(1);
 		if (fileName == "")
 			cap = VideoCapture(0);
-//			cap = VideoCapture(0);
+		//			cap = VideoCapture(0);
 		else
 			cap = VideoCapture(fileName);
 
@@ -132,3 +133,4 @@ public:
 	Point GetPoint();
 	void Close();
 };
+

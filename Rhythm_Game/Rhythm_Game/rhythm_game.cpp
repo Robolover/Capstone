@@ -7,11 +7,15 @@ Rhythm_Game::Rhythm_Game(QWidget *parent)
 {	
 	ui.setupUi(this);
 	ui.stacked_widget->setCurrentWidget(ui.main_widget);
-	//emit intro_video();
 	
 	camera_timer = new QTimer(this);
 	camera_timer->start(1);
+
+	point_timer = new QTimer(this);
+	point_timer->start(1);
+
 	connect(camera_timer, SIGNAL(timeout()), this, SLOT(update_camera()));
+	//connect(point_timer, SIGNAL(timeout()), this, SLOT(get_mouse_state()));
 }
 
 Rhythm_Game::~Rhythm_Game(){
@@ -21,7 +25,7 @@ Rhythm_Game::~Rhythm_Game(){
 // webcam 에서 영상을 capture
 void Rhythm_Game::update_camera(){
 	cv::Mat* img;
-	img = cap->ReadCam();
+	img = cap.ReadCam();
 
 	QImage qimg((uchar*)img->data, img->cols, img->rows, QImage::Format_RGB888);
 	ui.camera->setPixmap(QPixmap::fromImage(qimg));
@@ -55,6 +59,7 @@ void Rhythm_Game::exit_game(){
 // start_button event : 게임 시작
 void Rhythm_Game::enter_stage(){	
 	ui.stacked_widget->setCurrentWidget(ui.stage_widget);
+	get_mouse_state(cap.qt_flag);
 }
 
 void Rhythm_Game::play_video(){
@@ -155,10 +160,6 @@ void Rhythm_Game::result(){
 		ui.stacked_widget->setCurrentWidget(ui.result_widget);
 		ui.great->show();
 		ui.fail->hide();
-
-		//if (limit_stage < 3){
-		//	limit_stage += 1;
-		//}
 	}
 
 	else {
@@ -263,15 +264,13 @@ void Rhythm_Game::change_before_stage() {
 	}
 }
 
-void Rhythm_Game::get_mouse_state(){
-	flag = cap->qt_flag;
-
-	if (flag == TRUE){
-		m_point = cap->GetPoint();
+void Rhythm_Game::get_mouse_state(bool &flag){
+	if (flag == true){
+		m_point = cap.GetPoint();
+		emit click_event();
 	}
 }
 
-void Rhythm_Game::click_evet(Ui::Rhythm_GameClass *ui)
-{
-	//ui->	
+void Rhythm_Game::click_event(){
+
 }

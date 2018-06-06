@@ -4,15 +4,17 @@ Mat* Cap::ReadCam(){
 	cap.read(origin);
 	assert(!origin.empty());
 
-//	if (!isClicked) {
+	if (!isClicked) {
+		cout << "external Detecting called" << endl;
 		HandDetect();
 		if (contours.size() > 0)
 			Drawing(2, Detecting);
 
-//	}
-//	else {
-//		HandTracking();
-//	}
+	}
+	else {
+		cout << "external Tracking called" << endl;
+		HandTracking();
+	}
 	return &origin;
 }
 
@@ -34,7 +36,10 @@ void Cap::HandDetect(){
 	verticalStructure = getStructuringElement(MORPH_ELLIPSE, Size(3, 3));
 	erode(hand, hand, verticalStructure);
 
-	
+	//#Q 이전 ROI값 설정에 문제.
+	//ROI point (0,497036), width : 580, height : -496316
+	//else if 에서 else 삭제하고 if문 순서 문제 -> 해결
+	printf("ROI point (%d,%d), width : %d, height : %d\n", ROI[0].x, ROI[0].y, ROI[0].width, ROI[0].height);
 	handROI = Mat(hand, ROI[0]);
 	originROI = Mat(origin, ROI[0]);
 	Mat hierarchy;
@@ -44,6 +49,7 @@ void Cap::HandDetect(){
 	int bigsize = 0;
 	//calculate biggest contour
 	if (contours.size() > 0) {
+		largestIndex = -1;
 		for (int i = 0; i < contours.size(); i++) {
 			double a = contourArea(contours[i], false);
 			if (a > bigsize) {
@@ -51,14 +57,24 @@ void Cap::HandDetect(){
 				largestIndex = i;
 			}
 		}
+		
 		if (largestIndex >= 0) { //중심점, 손가락
+			cout << "2" << endl;
 			Mat center = Mat::zeros(Size(ROI[0].width, ROI[0].height), CV_8UC1);
 			Mat distChange = center.clone();
 			Mat cImg = center.clone();
+			//#Q 여기하나
+			printf("largestIndex : %d\n", largestIndex);
 			drawContours(center, contours, largestIndex, Scalar(255), -1);// center에 꽉찬 손 그림
 			distanceTransform(center, distChange, CV_DIST_L2, 5); // distChange에 거리변환
 			int maxIdx[2];    //좌표 값을 얻어올 배열(행, 열 순으로 저장됨)
 			minMaxIdx(distChange, NULL, &radius, NULL, maxIdx, center);   // 반지름 설정, 최소값은 사용 X
+			printf("center (%d,%d), radius : %.4lf\n", maxIdx[1], maxIdx[0], radius);
+			
+			// circle 반지름 졸라커지는거 예외처리. 왜커지는진 몰겠음
+			if (radius >= ROI[0].width || radius >= ROI[0].height)
+				radius = ROI[0].width > ROI[0].height ? ROI[0].height : ROI[0].width;
+			
 			centerOfHand = Point(maxIdx[1], maxIdx[0]); // 중심점
 
 			if (centerOfHand.x > 0 && centerOfHand.y > 0 && centerOfHand.x < 800 && centerOfHand.y < 720) { // 중심점이 ROI 내부에 있다면
@@ -89,16 +105,16 @@ void Cap::HandDetect(){
 }
 
 void Cap::HandTracking() {
-	
 	// set dT
 	double ticks = 0;
 	ticks = (double)cv::getTickCount();
 	double dT = (ticks - precTick) / getTickFrequency(); //seconds
 	precTick = ticks;
-	
+
+	cout << "internal Detecting called" << endl;
 	// detecting hands
 	HandDetect();
-	
+
 	handsBox.clear();
 	if (contours.size() > 0) {
 		Rect hBox = boundingRect(contours[largestIndex]);
@@ -115,11 +131,11 @@ void Cap::HandTracking() {
 	}
 	// <<<<< Detection result Drawing
 
-	
+
 	if (handsBox.size() == 0) {
 		notFoundCount++;
 		cout << "notFoundCount:" << notFoundCount << endl;
-//		if (notFoundCount >= 100) {
+		//if (notFoundCount >= 50) {
 			notFoundCount = 0;
 			foundHand = false;
 			isClicked = false;
@@ -127,7 +143,7 @@ void Cap::HandTracking() {
 			ROI[0].width = 500;
 			ROI[0].height = 500;
 			return;
-//		}
+		//}
 	}
 	// bounding에서 찾은 object가 없으면
 	else {
@@ -180,26 +196,34 @@ void Cap::HandTracking() {
 		cout << "State post:" << endl << state << endl;
 	}
 
+	
+	//<<<<<ROI 재설정
 	ROI[0].width = state.at<float>(4);
 	ROI[0].height = state.at<float>(5);
 
 	ROI[0].x = state.at<float>(0) - ROI[0].width / 2;
-	if (ROI[0].x < 0) ROI[0].x = 0;
-	else if (ROI[0].x + ROI[0].width > sz.width) ROI[0].width = sz.width - ROI[0].x;
-	else if (ROI[0].x > sz.width || ROI[0].width < 0) {
+
+	if (ROI[0].x < 0)
+		ROI[0].x = 0;
+	if (ROI[0].x > sz.width || ROI[0].width < 0) 
 		ROI[0].x = 150; ROI[0].width = 500;
-	}
+	if (ROI[0].x + ROI[0].width > sz.width) 
+		ROI[0].width = sz.width - ROI[0].x;
+	
 	if (ROI[0].width > sz.width) ROI[0].width = 1280;
 
 
+	//ROI point (0,497036), width : 580, height : -496316
 	ROI[0].y = state.at<float>(1) - ROI[0].height / 2;
-	if (ROI[0].y < 0) ROI[0].y = 0;
-	else if (ROI[0].y + ROI[0].height > sz.height) ROI[0].height = sz.height - ROI[0].y;
-	else if (ROI[0].y > sz.height || ROI[0].height < 0) {
+	if (ROI[0].y < 0)
+		ROI[0].y = 0;
+	if (ROI[0].y > sz.height || ROI[0].height < 0) 
 		ROI[0].y = 120; ROI[0].height = 500;
-	}
+	if (ROI[0].y + ROI[0].height > sz.height)
+		ROI[0].height = sz.height - ROI[0].y;
 	
-	if (ROI[0].height > sz.height) ROI[0].height = 720;	
+	if (ROI[0].height > sz.height) 
+		ROI[0].height = 720;
 	//>>>>>ROI 재설정
 
 	/*Drawing(3);*/ ///predict 결과값 그리기
@@ -211,14 +235,17 @@ void Cap::Drawing(int level, int flag){
 	// contours centerOfHand radius circleContour
 	//contour만
 	if (level == 1){
-		drawContours(originROI, contours, largestIndex, Scalar(0, 0, 255), 3); //skin color contours
-	}
+		if (largestIndex >= 0)
+			drawContours(originROI, contours, largestIndex, Scalar(0, 0, 255), 3); //skin color contours
+	}	
 	//원3개. 중심점,손바닥원,손가락원
 	else if (level == 2){
-		drawContours(originROI, contours, largestIndex, Scalar(0, 0, 255), 3); //skin color contours
-		circle(originROI, centerOfHand, 2, Scalar(255, 255, 0), 3); //중심점 파란색
-		circle(originROI, centerOfHand, radius, Scalar(0, 0, 255), 3); //손바닥 빨간색
-		circle(originROI, centerOfHand, radius * scale, Scalar(255, 0, 255), 3); //손가락 기준되는 원 보라색
+		if (largestIndex >= 0){
+			drawContours(originROI, contours, largestIndex, Scalar(0, 0, 255), 3); //skin color contours
+			circle(originROI, centerOfHand, 2, Scalar(255, 255, 0), 3); //중심점 파란색
+			circle(originROI, centerOfHand, radius, Scalar(0, 0, 255), 3); //손바닥 빨간색
+			circle(originROI, centerOfHand, radius * scale, Scalar(255, 0, 255), 3); //손가락 기준되는 원 보라색
+		}
 
 	}
 	//boxing(measure)
@@ -236,4 +263,3 @@ void Cap::Close(){
 	destroyAllWindows();
 	cap.release();
 }
-

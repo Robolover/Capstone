@@ -32,13 +32,11 @@ public:
 	Rhythm_Game(QWidget *parent = 0);
 	~Rhythm_Game();
 
-	Cap *cap = new Cap();
+	Cap cap;
 
-	void get_mouse_state();	
-	void click_evet(Ui::Rhythm_GameClass *ui);
+	void get_mouse_state(bool &flag);
 	void video_player();
 
-	bool flag = NULL;
 	Point m_point;
 	int point_x = 0;
 	int point_y = 0;
@@ -55,6 +53,7 @@ private:
 	QVideoWidget *video;
 	QMouseEvent *click;
 	QTimer *camera_timer;
+	QTimer *point_timer;
 	QTimer *video_timer;
 	QTimer *intro_timer;
 	QTimer *apple_timer;
@@ -65,6 +64,7 @@ private:
 
 private slots:
 	void update_camera();
+	void click_event();
 	void intro_video();
 	void enter_stage();
 	void exit_game();
