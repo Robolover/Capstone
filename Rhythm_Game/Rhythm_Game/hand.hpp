@@ -1,6 +1,6 @@
 #ifndef CAP
 #define CAP
-#include <includes.h>
+#include "includes.h"
 #endif
 
 #define YCbCr
@@ -23,8 +23,9 @@ private:
 	string str;
 	float fps;
 	Rect ROI[2];
-	Point centerOfHand;
+	Point centerOfHand, draw_center;
 	bool isClicked;
+	
 	double scale;
 
 	/*Detecting*/
@@ -53,9 +54,11 @@ private:
 	vector<Rect> handsBox;
 
 public:
+	bool qt_flag;
+
 	Cap(string fileName=""){
 		sz.width = 1280, sz.height = 720;
-		ROI[0] = Rect(700, 120, 500, 500);
+		ROI[0] = Rect(150, 120, 500, 500);
 		isClicked = false;
 		foundHand = false;
 
@@ -113,6 +116,7 @@ public:
 		//cap = VideoCapture(1);
 		if (fileName == "")
 			cap = VideoCapture(0);
+//			cap = VideoCapture(0);
 		else
 			cap = VideoCapture(fileName);
 
@@ -125,5 +129,6 @@ public:
 	void HandDetect();
 	void HandTracking();
 	void Drawing(int level, int flag);
+	Point GetPoint();
 	void Close();
 };

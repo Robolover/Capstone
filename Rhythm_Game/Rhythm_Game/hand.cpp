@@ -1,35 +1,18 @@
 #include "hand.hpp"
 
-//void Cap::ReadCam(){
-//	// read Video file
-//	while (cap.read(origin))	{
-//		if (!isClicked) {
-//			HandDetect();
-//			if (contours.size() > 0)
-//				Drawing(2, Detecting);
-//	
-//		}
-//		else {
-//			HandTracking();
-//		}
-//		
-//		imshow("main", origin);
-//		if (27 == waitKey(1)) Close();
-//	}
-//}
 Mat* Cap::ReadCam(){
 	cap.read(origin);
 	assert(!origin.empty());
 
-	if (!isClicked) {
+//	if (!isClicked) {
 		HandDetect();
 		if (contours.size() > 0)
 			Drawing(2, Detecting);
 
-	}
-	else {
-		HandTracking();
-	}
+//	}
+//	else {
+//		HandTracking();
+//	}
 	return &origin;
 }
 
@@ -37,6 +20,8 @@ Mat* Cap::ReadCam(){
 //		 0,59,33 ~ 50,173,255
 // ycbcr : 
 void Cap::HandDetect(){
+	scale = 1.8;
+	qt_flag = false;
 	resize(origin, origin, sz);
 	flip(origin, origin, 1);
 	cvtColor(origin, hand, COLOR_RGB2YCrCb);
@@ -92,6 +77,7 @@ void Cap::HandDetect(){
 				if (preFingerCount - fingercount >= 4) {
 					putText(origin, "click event!!", Point(10, 45), 0, 1, Scalar(0, 0, 255), 2);
 					isClicked = true;
+					qt_flag = true;
 				}
 				str = "finger count : ";
 				str += to_string(fingercount - 1);
@@ -103,30 +89,7 @@ void Cap::HandDetect(){
 }
 
 void Cap::HandTracking() {
-	//HandDetect();
-	////bounding 코드 추가(측정값 드로우)
-	//if (){ // bounding에서 찾은 object가 없으면
-	//	notFoundCount++;
-	//	cout << "notFoundCount:" << notFoundCount << endl;
-	//	if (notFoundCount >= 100){
-	//		notFoundCount = 0;
-	//		foundHand = false;
-	//		isClicked = false;
-	//		ROI[0].x = 700, ROI[0].y = 120;
-	//		return;
-	//	}
-	//}
-	//if (!foundHand){
-	//	//2.D.초기화
-	//	foundHand = true;
-	//	kf.predict();
-	//}
-	//else{
-	//	kf.correct();
-	//	kf.predict();
-	//}
-	//Drawing();
-
+	
 	// set dT
 	double ticks = 0;
 	ticks = (double)cv::getTickCount();
@@ -152,7 +115,7 @@ void Cap::HandTracking() {
 	}
 	// <<<<< Detection result Drawing
 
-	// 여기서 계속 에러가 남.
+	
 	if (handsBox.size() == 0) {
 		notFoundCount++;
 		cout << "notFoundCount:" << notFoundCount << endl;
@@ -160,7 +123,7 @@ void Cap::HandTracking() {
 			notFoundCount = 0;
 			foundHand = false;
 			isClicked = false;
-			ROI[0].x = 700, ROI[0].y = 120;
+			ROI[0].x = 150, ROI[0].y = 120;
 			ROI[0].width = 500;
 			ROI[0].height = 500;
 			return;
@@ -205,11 +168,14 @@ void Cap::HandTracking() {
 		if (notFoundCount == 0) {
 			cout << "State Measure:" << endl << measure << endl;
 			kf.correct(measure);
+			kf.transitionMatrix.at<float>(2) = dT;
+			kf.transitionMatrix.at<float>(9) = dT;
+			printf("dT :%lf\n", dT);
 		}
-		//의심이 된다
-		kf.transitionMatrix.at<float>(2) = dT;
-		kf.transitionMatrix.at<float>(9) = dT;
-		printf("dT :%lf\n", dT);
+		else {
+			kf.transitionMatrix.at<float>(2) = 0;
+			kf.transitionMatrix.at<float>(9) = 0;
+		}
 		state = kf.predict();
 		cout << "State post:" << endl << state << endl;
 	}
@@ -221,18 +187,23 @@ void Cap::HandTracking() {
 	if (ROI[0].x < 0) ROI[0].x = 0;
 	else if (ROI[0].x + ROI[0].width > sz.width) ROI[0].width = sz.width - ROI[0].x;
 	else if (ROI[0].x > sz.width || ROI[0].width < 0) {
-		ROI[0].x = 700; ROI[0].width = 500;
+		ROI[0].x = 150; ROI[0].width = 500;
 	}
+	if (ROI[0].width > sz.width) ROI[0].width = 1280;
+
 
 	ROI[0].y = state.at<float>(1) - ROI[0].height / 2;
 	if (ROI[0].y < 0) ROI[0].y = 0;
 	else if (ROI[0].y + ROI[0].height > sz.height) ROI[0].height = sz.height - ROI[0].y;
-	else if (ROI[0].x > sz.width || ROI[0].width < 0) {
+	else if (ROI[0].y > sz.height || ROI[0].height < 0) {
 		ROI[0].y = 120; ROI[0].height = 500;
 	}
+	
+	if (ROI[0].height > sz.height) ROI[0].height = 720;	
 	//>>>>>ROI 재설정
 
 	/*Drawing(3);*/ ///predict 결과값 그리기
+	draw_center = Point(state.at<float>(0), state.at<float>(1));
 	Drawing(3, Tracking);
 }
 
@@ -252,14 +223,17 @@ void Cap::Drawing(int level, int flag){
 	}
 	//boxing(measure)
 	else if (level == 3){
-		drawContours(originROI, contours, largestIndex, CV_RGB(0, 255, 0), 2);
-		rectangle(originROI, handsBox[0], CV_RGB(0, 255, 255), 2);
-		circle(originROI, centerOfHand, 2, CV_RGB(0, 255, 255), -1);
+		circle(originROI, draw_center, 2, CV_RGB(0, 255, 255), -1);
 	}
 	return;
+}
+
+Point Cap::GetPoint() {
+	return 	draw_center;
 }
 
 void Cap::Close(){
 	destroyAllWindows();
 	cap.release();
 }
+

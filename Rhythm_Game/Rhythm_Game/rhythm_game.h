@@ -32,20 +32,19 @@ public:
 	Rhythm_Game(QWidget *parent = 0);
 	~Rhythm_Game();
 
-	void get_mouse_state( QPoint &hand_point, int &finger);	
-	void click_evet(QMouseEvent *e);
+	Cap *cap = new Cap();
+
+	void get_mouse_state();	
+	void click_evet(Ui::Rhythm_GameClass *ui);
 	void video_player();
 
+	bool flag = NULL;
+	Point m_point;
+	int point_x = 0;
+	int point_y = 0;
 	int select_stage = 1;
 	int limit_stage  = 1;
-	int timer_count = 0;
 	int answer_correct = 0;
-	int click_flag   = FALSE;
-	int finger_count = 0;
-	int m_point_x = 0;
-	int m_point_y = 0;
-
-	Cap *cap = new Cap();
 
 private:
 	Ui::Rhythm_GameClass ui;

@@ -23,7 +23,7 @@ void Rhythm_Game::update_camera(){
 	cv::Mat* img;
 	img = cap->ReadCam();
 
-	QImage qimg(img->data, img->cols, img->rows, QImage::Format_RGB888);
+	QImage qimg((uchar*)img->data, img->cols, img->rows, QImage::Format_RGB888);
 	ui.camera->setPixmap(QPixmap::fromImage(qimg));
 	ui.camera_2->setPixmap(QPixmap::fromImage(qimg));
 	ui.camera_3->setPixmap(QPixmap::fromImage(qimg));
@@ -264,49 +264,17 @@ void Rhythm_Game::change_before_stage() {
 }
 
 /*
-void Rhythm_Game::get_mouse_state( QPoint &hand_point, int &finger)
-{
-	//m_point_x = hand_point.x;
-	//m_point_y = hand_point.y;
+void Rhythm_Game::get_mouse_state(){
+	flag = cap->qt_flag;
 
-	//finger_count = finger;
+	if (flag == TRUE){
+		m_point = cap->GetPoint();
+	}
+	//m_point.x;
 }
 
-void Rhythm_Game::click_evet(QMouseEvent *e)
+void Rhythm_Game::click_evet(Ui::Rhythm_GameClass *ui)
 {
-	//m_point->x;
-	//m_point->y; // m_point가 button 위에 있을 조건 추가
-
-	int state = 0;
-	
-	switch (state)
-	{
-		case 0: 
-			if (finger_count == 5)
-			{
-				click_flag = FALSE;
-				state = 1;
-			}
-			break;
-
-		case 1:
-			if (finger_count == 0)
-			{
-				click_flag = TRUE;
-				state = 2;
-			}
-			break;
-
-		case 2:
-			if (finger_count == 0 && click_flag == TRUE)
-			{
-				emit SIGNAL(clicked());
-			}
-			break;
-
-		default:
-			state = 0;
-			break;
-	}
+	//ui->	
 }
 */

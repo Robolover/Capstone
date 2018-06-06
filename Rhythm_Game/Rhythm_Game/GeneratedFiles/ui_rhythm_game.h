@@ -218,7 +218,7 @@ public:
         QObject::connect(duck, SIGNAL(clicked()), Rhythm_GameClass, SLOT(check_answer()));
         QObject::connect(apple, SIGNAL(clicked()), Rhythm_GameClass, SLOT(check_answer()));
 
-        stacked_widget->setCurrentIndex(0);
+        stacked_widget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(Rhythm_GameClass);
