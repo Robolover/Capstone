@@ -10,6 +10,7 @@
 #define FALSE 0
 
 #include <QtWidgets/QMainWindow>
+#include <QAbstractButton>
 #include <QStackedWidget>
 #include <QGraphicsVideoItem>
 #include <QGraphicsScene>
@@ -18,6 +19,7 @@
 #include <QMediaPlayer>
 #include <QMultimedia>
 #include <QMouseEvent>
+#include <QCursor>
 #include <QTimer>
 
 #include "includes.h"
@@ -34,10 +36,10 @@ public:
 
 	Cap cap;
 
-	void get_mouse_state(bool &flag);
 	void video_player();
 
 	Point m_point;
+	bool flag = false;
 	int point_x = 0;
 	int point_y = 0;
 	int select_stage = 1;
@@ -51,7 +53,7 @@ private:
 	QMediaPlayer* video_play;
 	QMediaPlayer* music_play;
 	QVideoWidget *video;
-	QMouseEvent *click;
+	QMouseEvent *mouse_event;
 	QTimer *camera_timer;
 	QTimer *point_timer;
 	QTimer *video_timer;
@@ -61,10 +63,16 @@ private:
 	QTimer *cat_timer;
 	QTimer *duck_timer;
 	QTimer *timer_finish;
+	QCursor *cursor = new QCursor();
+	QAbstractButton *b_test;
+
+	void click_event();
+
 
 private slots:
+	void test();
 	void update_camera();
-	void click_event();
+	void get_mouse_state();
 	void intro_video();
 	void enter_stage();
 	void exit_game();

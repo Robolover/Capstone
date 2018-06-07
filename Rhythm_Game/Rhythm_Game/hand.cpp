@@ -127,6 +127,7 @@ void Cap::HandTracking() {
 
 		stringstream sstr;
 		sstr << "(" << centerOfHand.x << "," << centerOfHand.y << ")";
+
 		putText(originROI, sstr.str(), Point(centerOfHand.x + 3, centerOfHand.y - 3), FONT_HERSHEY_SIMPLEX, 0.5, CV_RGB(20, 150, 20), 2);
 	}
 	// <<<<< Detection result Drawing
@@ -154,6 +155,7 @@ void Cap::HandTracking() {
 		measure.at<float>(1) = centerOfHand.y + ROI[0].y;
 		measure.at<float>(2) = (float)handsBox[0].width * 1.5;
 		measure.at<float>(3) = (float)handsBox[0].height * 1.5;
+		draw_center = Point(measure.at<float>(0), measure.at<float>(1));
 	}
 
 	if (!foundHand) {
@@ -227,7 +229,7 @@ void Cap::HandTracking() {
 	//>>>>>ROI 재설정
 
 	/*Drawing(3);*/ ///predict 결과값 그리기
-	draw_center = Point(state.at<float>(0), state.at<float>(1));
+	
 	Drawing(3, Tracking);
 }
 

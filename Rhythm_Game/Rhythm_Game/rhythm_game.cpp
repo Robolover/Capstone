@@ -15,7 +15,9 @@ Rhythm_Game::Rhythm_Game(QWidget *parent)
 	point_timer->start(1);
 
 	connect(camera_timer, SIGNAL(timeout()), this, SLOT(update_camera()));
-	//connect(point_timer, SIGNAL(timeout()), this, SLOT(get_mouse_state()));
+	connect(point_timer, SIGNAL(timeout()), this, SLOT(get_mouse_state()));
+	connect(this, SIGNAL(click_event()), this, SLOT(test()));
+
 }
 
 Rhythm_Game::~Rhythm_Game(){
@@ -59,7 +61,8 @@ void Rhythm_Game::exit_game(){
 // start_button event : 게임 시작
 void Rhythm_Game::enter_stage(){	
 	ui.stacked_widget->setCurrentWidget(ui.stage_widget);
-	get_mouse_state(cap.qt_flag);
+
+	//get_mouse_state(cap.qt_flag);
 }
 
 void Rhythm_Game::play_video(){
@@ -264,13 +267,24 @@ void Rhythm_Game::change_before_stage() {
 	}
 }
 
-void Rhythm_Game::get_mouse_state(bool &flag){
-	if (flag == true){
-		m_point = cap.GetPoint();
+void Rhythm_Game::get_mouse_state(){
+
+	cursor->setPos(cap.GetPoint().x, cap.GetPoint().y);
+	ui.label_2->setText(QString::number(cap.qt_flag));
+	ui.label_3->setText(QString::number(cap.GetPoint().x));
+	ui.label_4->setText(QString::number(cap.GetPoint().y));
+
+	if (cap.qt_flag == true){
 		emit click_event();
+		emit b_test->clicked();
 	}
 }
 
 void Rhythm_Game::click_event(){
+	//QEvent::GraphicsSceneMousePress; 
+	ui.label_5->setText("button preeeeesssss!!!!!!!");	
+}
 
+void Rhythm_Game::test(){
+	ui.label_6->setText("button preeeeesssss!!!!!!!");
 }
