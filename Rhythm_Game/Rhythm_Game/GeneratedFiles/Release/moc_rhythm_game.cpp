@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_Rhythm_Game_t {
     QByteArrayData data[21];
-    char stringdata[224];
+    char stringdata[231];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -30,28 +30,28 @@ struct qt_meta_stringdata_Rhythm_Game_t {
 static const qt_meta_stringdata_Rhythm_Game_t qt_meta_stringdata_Rhythm_Game = {
     {
 QT_MOC_LITERAL(0, 0, 11),
-QT_MOC_LITERAL(1, 12, 4),
-QT_MOC_LITERAL(2, 17, 0),
-QT_MOC_LITERAL(3, 18, 13),
-QT_MOC_LITERAL(4, 32, 15),
-QT_MOC_LITERAL(5, 48, 11),
-QT_MOC_LITERAL(6, 60, 11),
-QT_MOC_LITERAL(7, 72, 9),
-QT_MOC_LITERAL(8, 82, 17),
-QT_MOC_LITERAL(9, 100, 19),
-QT_MOC_LITERAL(10, 120, 10),
-QT_MOC_LITERAL(11, 131, 9),
-QT_MOC_LITERAL(12, 141, 6),
-QT_MOC_LITERAL(13, 148, 14),
-QT_MOC_LITERAL(14, 163, 13),
-QT_MOC_LITERAL(15, 177, 15),
-QT_MOC_LITERAL(16, 193, 5),
-QT_MOC_LITERAL(17, 199, 3),
-QT_MOC_LITERAL(18, 203, 3),
-QT_MOC_LITERAL(19, 207, 4),
-QT_MOC_LITERAL(20, 212, 11)
+QT_MOC_LITERAL(1, 12, 11),
+QT_MOC_LITERAL(2, 24, 0),
+QT_MOC_LITERAL(3, 25, 13),
+QT_MOC_LITERAL(4, 39, 15),
+QT_MOC_LITERAL(5, 55, 11),
+QT_MOC_LITERAL(6, 67, 11),
+QT_MOC_LITERAL(7, 79, 9),
+QT_MOC_LITERAL(8, 89, 17),
+QT_MOC_LITERAL(9, 107, 19),
+QT_MOC_LITERAL(10, 127, 10),
+QT_MOC_LITERAL(11, 138, 9),
+QT_MOC_LITERAL(12, 148, 6),
+QT_MOC_LITERAL(13, 155, 14),
+QT_MOC_LITERAL(14, 170, 13),
+QT_MOC_LITERAL(15, 184, 15),
+QT_MOC_LITERAL(16, 200, 5),
+QT_MOC_LITERAL(17, 206, 3),
+QT_MOC_LITERAL(18, 210, 3),
+QT_MOC_LITERAL(19, 214, 4),
+QT_MOC_LITERAL(20, 219, 11)
     },
-    "Rhythm_Game\0test\0\0update_camera\0"
+    "Rhythm_Game\0click_event\0\0update_camera\0"
     "get_mouse_state\0intro_video\0enter_stage\0"
     "exit_game\0change_next_stage\0"
     "change_before_stage\0play_video\0play_game\0"
@@ -124,7 +124,7 @@ void Rhythm_Game::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
     if (_c == QMetaObject::InvokeMetaMethod) {
         Rhythm_Game *_t = static_cast<Rhythm_Game *>(_o);
         switch (_id) {
-        case 0: _t->test(); break;
+        case 0: _t->click_event(); break;
         case 1: _t->update_camera(); break;
         case 2: _t->get_mouse_state(); break;
         case 3: _t->intro_video(); break;

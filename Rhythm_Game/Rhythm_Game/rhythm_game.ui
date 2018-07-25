@@ -486,22 +486,6 @@
  </resources>
  <connections>
   <connection>
-   <sender>start_button</sender>
-   <signal>clicked()</signal>
-   <receiver>Rhythm_GameClass</receiver>
-   <slot>enter_stage()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>249</x>
-     <y>663</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>649</x>
-     <y>374</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>quit_button</sender>
    <signal>clicked()</signal>
    <receiver>Rhythm_GameClass</receiver>

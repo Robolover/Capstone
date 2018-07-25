@@ -16,8 +16,7 @@ Rhythm_Game::Rhythm_Game(QWidget *parent)
 
 	connect(camera_timer, SIGNAL(timeout()), this, SLOT(update_camera()));
 	connect(point_timer, SIGNAL(timeout()), this, SLOT(get_mouse_state()));
-	connect(this, SIGNAL(click_event()), this, SLOT(test()));
-
+	connect(this, SIGNAL(click_event()), this, SLOT(enter_stage()));
 }
 
 Rhythm_Game::~Rhythm_Game(){
@@ -29,7 +28,7 @@ void Rhythm_Game::update_camera(){
 	cv::Mat* img;
 	img = cap.ReadCam();
 
-	QImage qimg((uchar*)img->data, img->cols, img->rows, QImage::Format_RGB888);
+	QImage qimg((uchar*)img->data, img->cols, img->rows, QImage::Format_BGR30);
 	ui.camera->setPixmap(QPixmap::fromImage(qimg));
 	ui.camera_2->setPixmap(QPixmap::fromImage(qimg));
 	ui.camera_3->setPixmap(QPixmap::fromImage(qimg));
@@ -61,8 +60,6 @@ void Rhythm_Game::exit_game(){
 // start_button event : 게임 시작
 void Rhythm_Game::enter_stage(){	
 	ui.stacked_widget->setCurrentWidget(ui.stage_widget);
-
-	//get_mouse_state(cap.qt_flag);
 }
 
 void Rhythm_Game::play_video(){
@@ -268,23 +265,16 @@ void Rhythm_Game::change_before_stage() {
 }
 
 void Rhythm_Game::get_mouse_state(){
-
-	cursor->setPos(cap.GetPoint().x, cap.GetPoint().y);
+//	cursor->setPos(cap.GetPoint().x, cap.GetPoint().y);
 	ui.label_2->setText(QString::number(cap.qt_flag));
 	ui.label_3->setText(QString::number(cap.GetPoint().x));
 	ui.label_4->setText(QString::number(cap.GetPoint().y));
 
-	if (cap.qt_flag == true){
-		emit click_event();
-		emit b_test->clicked();
+	if (cap.qt_flag == true)
+	{
+		Q_EMIT click_event();
 	}
 }
-
 void Rhythm_Game::click_event(){
-	//QEvent::GraphicsSceneMousePress; 
-	ui.label_5->setText("button preeeeesssss!!!!!!!");	
-}
-
-void Rhythm_Game::test(){
-	ui.label_6->setText("button preeeeesssss!!!!!!!");
+	ui.label_5->setText("event!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 }

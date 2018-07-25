@@ -228,7 +228,6 @@ public:
         Rhythm_GameClass->setStatusBar(statusBar);
 
         retranslateUi(Rhythm_GameClass);
-        QObject::connect(start_button, SIGNAL(clicked()), Rhythm_GameClass, SLOT(enter_stage()));
         QObject::connect(quit_button, SIGNAL(clicked()), Rhythm_GameClass, SLOT(exit_game()));
         QObject::connect(right_button, SIGNAL(clicked()), Rhythm_GameClass, SLOT(change_next_stage()));
         QObject::connect(left_button, SIGNAL(clicked()), Rhythm_GameClass, SLOT(change_before_stage()));

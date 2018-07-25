@@ -53,7 +53,6 @@ private:
 	QMediaPlayer* video_play;
 	QMediaPlayer* music_play;
 	QVideoWidget *video;
-	QMouseEvent *mouse_event;
 	QTimer *camera_timer;
 	QTimer *point_timer;
 	QTimer *video_timer;
@@ -64,13 +63,10 @@ private:
 	QTimer *duck_timer;
 	QTimer *timer_finish;
 	QCursor *cursor = new QCursor();
-	QAbstractButton *b_test;
-
-	void click_event();
-
+	QAbstractButton *b_click;
 
 private slots:
-	void test();
+	void click_event();
 	void update_camera();
 	void get_mouse_state();
 	void intro_video();

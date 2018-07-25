@@ -116,7 +116,7 @@ public:
 
 		//cap = VideoCapture(1);
 		if (fileName == "")
-			cap = VideoCapture(1);
+			cap = VideoCapture(0);
 		//			cap = VideoCapture(0);
 		else
 			cap = VideoCapture(fileName);
